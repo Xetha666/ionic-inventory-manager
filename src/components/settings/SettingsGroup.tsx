@@ -1,4 +1,4 @@
-import Separator from '@components/Settings/Separator.tsx';
+import Separator from './Separator';
 import React from 'react';
 import SettingsItem, { SettingsItemProps } from './SettingsItem';
 

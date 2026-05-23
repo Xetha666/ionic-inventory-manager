@@ -1,7 +1,7 @@
-import BottomNavBar from '@/components/Navigation/BottomNavBar';
-import SettingsGroup from '@/components/Settings/SettingsGroup';
-import SettingsTopBar from '@/components/Settings/SettingsTopBar';
-import UserProfile from '@/components/Settings/UserProfile';
+import BottomNavBar from '@/components/navigation/BottomNavBar';
+import SettingsGroup from '@/components/settings/SettingsGroup';
+import SettingsTopBar from '@/components/settings/SettingsTopBar';
+import UserProfile from '@/components/settings/UserProfile';
 import { IonContent, IonIcon, IonPage } from '@ionic/react';
 import {
   helpCircleOutline,

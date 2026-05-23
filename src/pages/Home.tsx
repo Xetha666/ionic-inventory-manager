@@ -1,8 +1,8 @@
-import DashboardHeader from '@/components/Dashboard/DashboardHeader';
-import MetricCard from '@/components/Dashboard/MetricCard';
-import ValorizationCard from '@/components/Dashboard/ValorizationCard';
-import WeeklyMovementChart from '@/components/Dashboard/WeeklyMovementChart';
-import BottomNavBar from '@/components/Navigation/BottomNavBar';
+import DashboardHeader from '@/components/dashboard/DashboardHeader';
+import MetricCard from '@/components/dashboard/MetricCard';
+import ValorizationCard from '@/components/dashboard/ValorizationCard';
+import WeeklyMovementChart from '@/components/dashboard/WeeklyMovementChart';
+import BottomNavBar from '@/components/navigation/BottomNavBar';
 import { IonContent, IonPage } from '@ionic/react';
 import { cubeOutline, warningOutline } from 'ionicons/icons';
 import React from 'react';

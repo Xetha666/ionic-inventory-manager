@@ -1,6 +1,6 @@
-import BiometricAuth from '@/components/Login/BiometricAuth';
-import LoginForm from '@/components/Login/LoginForm';
-import LoginHeader from '@/components/Login/LoginHeader';
+import BiometricAuth from '@/components/login/BiometricAuth';
+import LoginForm from '@/components/login/LoginForm';
+import LoginHeader from '@/components/login/LoginHeader';
 import { IonContent, IonPage } from '@ionic/react';
 import React from 'react';
 
