@@ -1,7 +1,7 @@
+import { clearLocalUserSession } from '@/services/authService';
+import { supabase } from '@/services/supabaseClient';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { supabase } from '@/services/supabaseClient';
-import { clearLocalUserSession } from '@/services/authService';
 
 /**
  * Custom hook acting as a client-side middleware to monitor authentication states.

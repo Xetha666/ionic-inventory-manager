@@ -1,3 +1,4 @@
+import { getLocalUserSession, logoutUser, UserSession } from '@/services/authService';
 import { IonIcon } from '@ionic/react';
 import {
   barChartOutline,
@@ -10,7 +11,6 @@ import {
 } from 'ionicons/icons';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getLocalUserSession, logoutUser, UserSession } from '@/services/authService';
 
 interface SidebarMenuProps {
   isOpen: boolean;
@@ -118,11 +118,9 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
           <div className="flex items-center gap-md mb-4 p-2 rounded-xl">
             <img
               alt={userProfile.name}
-              className="size-10 rounded-full object-cover border border-outline-variant/30 shadow-sm bg-primary-fixed flex-shrink-0"
+              className="size-10 rounded-full object-cover border border-outline-variant/30 shadow-sm bg-primary-fixed shrink-0"
               src={userProfile.avatarUrl || '/avatar.png'}
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src = '/avatar.png';
-              }}
+              onError={(e) => {(e.currentTarget as HTMLImageElement).src = '/avatar.png';}}
             />
             <div className="flex flex-col min-w-0">
               <span className="font-body-md font-semibold text-on-surface truncate">{userProfile.name}</span>
