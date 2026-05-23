@@ -1,6 +1,6 @@
+import Separator from '@components/Settings/Separator.tsx';
 import React from 'react';
 import SettingsItem, { SettingsItemProps } from './SettingsItem';
-import Separator from './Separator';
 
 interface SettingsGroupProps {
   label: string;
@@ -22,7 +22,7 @@ const SettingsGroup: React.FC<SettingsGroupProps> = ({ label, items }) => {
             <SettingsItem {...item} />
             {index < items.length - 1 && (
               <div className="px-settings-item-x">
-                <Separator />
+                <Separator faded={true} />
               </div>
             )}
           </React.Fragment>
