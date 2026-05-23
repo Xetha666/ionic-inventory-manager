@@ -1,6 +1,6 @@
 import Separator from '@/components/settings/Separator';
-import React from 'react';
 import SettingsItem, { SettingsItemProps } from '@/components/settings/SettingsItem';
+import React from 'react';
 
 interface SettingsGroupProps {
   label: string;

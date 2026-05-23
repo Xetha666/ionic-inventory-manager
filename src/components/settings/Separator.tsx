@@ -21,9 +21,9 @@ const Separator: React.FC<SeparatorProps> = ({
         ${
           faded
             ? isHorizontal
-              ? 'bg-linear-to-r from-transparent via-outline-variant/30 to-transparent'
-              : 'bg-linear-to-b from-transparent via-outline-variant/30 to-transparent'
-            : 'bg-outline-variant/20'
+              ? 'bg-linear-to-r from-transparent via-outline/20 to-transparent'
+              : 'bg-linear-to-b from-transparent via-outline/20 to-transparent'
+            : 'bg-outline/20'
         }
         ${className}
       `}

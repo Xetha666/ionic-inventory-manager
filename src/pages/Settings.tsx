@@ -3,14 +3,8 @@ import SettingsGroup from '@/components/settings/SettingsGroup';
 import SettingsTopBar from '@/components/settings/SettingsTopBar';
 import UserProfile from '@/components/settings/UserProfile';
 import { IonContent, IonIcon, IonPage } from '@ionic/react';
-import {
-  helpCircleOutline,
-  locationOutline,
-  logOutOutline,
-  notificationsOutline,
-  optionsOutline,
-  shieldHalfOutline,
-} from 'ionicons/icons';
+import { getSettingsConfig } from '@/components/settings/settingsData';
+import { logOutOutline } from 'ionicons/icons';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -29,51 +23,13 @@ const Settings: React.FC = () => {
     console.log('Settings: Edit Profile Clicked');
   };
 
-  const accountItems = [
-    {
-      icon: shieldHalfOutline,
-      title: 'Seguridad',
-      subtitle: 'Contraseña, 2FA, Historial de sesiones',
-      onClick: () => console.log('Click: Seguridad'),
-    },
-    {
-      icon: notificationsOutline,
-      title: 'Notificaciones',
-      subtitle: 'Push, Correo, Alertas de inventario',
-      onClick: () => console.log('Click: Notificaciones'),
-    },
-  ];
-
-  const warehouseItems = [
-    {
-      icon: locationOutline,
-      title: 'Ubicación',
-      subtitle: 'Centro principal, Zonas de envío',
-      iconBgClass: 'bg-blue-100/60',
-      iconColorClass: 'text-blue-600',
-      onClick: () => console.log('Click: Ubicación'),
-    },
-    {
-      icon: optionsOutline,
-      title: 'Preferencias',
-      subtitle: 'Idioma, Unidades, Modos de visualización',
-      iconBgClass: 'bg-blue-100/60',
-      iconColorClass: 'text-blue-600',
-      onClick: () => console.log('Click: Preferencias'),
-    },
-  ];
-
-  const supportItems = [
-    {
-      icon: helpCircleOutline,
-      title: 'Centro de Ayuda',
-      subtitle: 'Preguntas frecuentes, Guías, Chat en vivo',
-      isExternal: true,
-      iconBgClass: 'bg-secondary-container/50',
-      iconColorClass: 'text-on-secondary-container',
-      onClick: () => console.log('Click: Centro de Ayuda'),
-    },
-  ];
+  const { accountItems, warehouseItems, supportItems } = getSettingsConfig({
+    onSecurity: () => console.log('Click: Seguridad'),
+    onNotifications: () => console.log('Click: Notificaciones'),
+    onLocation: () => console.log('Click: Ubicación'),
+    onPreferences: () => console.log('Click: Preferencias'),
+    onHelp: () => console.log('Click: Centro de Ayuda'),
+  });
 
   return (
     <IonPage>

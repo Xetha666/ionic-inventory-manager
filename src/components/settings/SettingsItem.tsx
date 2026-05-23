@@ -49,7 +49,7 @@ const SettingsItem: React.FC<SettingsItemProps> = ({
       {/* Action Indicator */}
       <IonIcon
         icon={isExternal ? openOutline : chevronForwardOutline}
-        className="text-outline-variant hover:text-on-surface-variant text-lg shrink-0"
+        className="text-outline-variant hover:text-on-surface-variant text-lg shrink-0 mr-3"
       />
     </button>
   );
