@@ -8,6 +8,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
+import { isAuthenticated } from '@/services/authService';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -50,13 +51,13 @@ const App: React.FC = () => (
           <Login />
         </Route>
         
-        <Route exact path="/home">
-          <Home />
-        </Route>
+        <Route exact path="/home" render={() => (
+          isAuthenticated() ? <Home /> : <Redirect to="/login" />
+        )} />
 
-        <Route exact path="/settings">
-          <Settings />
-        </Route>
+        <Route exact path="/settings" render={() => (
+          isAuthenticated() ? <Settings /> : <Redirect to="/login" />
+        )} />
 
         {/* Redirect empty path to login */}
         <Route exact path="/">

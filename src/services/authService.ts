@@ -25,10 +25,18 @@ export const getLocalUserSession = (): UserSession => {
 
 export const setLocalUserSession = (session: UserSession) => {
   localStorage.setItem('user_session', JSON.stringify(session));
+  // Generate and save a mock JWT token representing the session
+  const mockToken = `mock_jwt_token_${btoa(JSON.stringify(session))}_${Date.now()}`;
+  localStorage.setItem('auth_token', mockToken);
 };
 
 export const clearLocalUserSession = () => {
   localStorage.removeItem('user_session');
+  localStorage.removeItem('auth_token');
+};
+
+export const isAuthenticated = (): boolean => {
+  return !!localStorage.getItem('auth_token');
 };
 
 /**
