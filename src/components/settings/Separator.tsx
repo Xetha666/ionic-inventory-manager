@@ -17,12 +17,12 @@ const Separator: React.FC<SeparatorProps> = ({
     <div
       className={`
         shrink-0
-        ${isHorizontal ? 'h-[1px] w-full' : 'w-[1px] h-full'}
+        ${isHorizontal ? 'h-px w-full' : 'w-px h-full'}
         ${
           faded
             ? isHorizontal
-              ? 'bg-gradient-to-r from-transparent via-outline-variant/30 to-transparent'
-              : 'bg-gradient-to-b from-transparent via-outline-variant/30 to-transparent'
+              ? 'bg-linear-to-r from-transparent via-outline-variant/30 to-transparent'
+              : 'bg-linear-to-b from-transparent via-outline-variant/30 to-transparent'
             : 'bg-outline-variant/20'
         }
         ${className}
