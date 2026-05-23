@@ -12,9 +12,9 @@ const Spinner: React.FC<SpinnerProps> = ({
   className = '',
 }) => {
   const sizeClasses = {
-    sm: 'size-4 border-[1.5px]',
+    sm: 'size-4 border',
     md: 'size-5 border-2',
-    lg: 'size-8 border-[3px]',
+    lg: 'size-8 border-4',
   };
 
   return (
