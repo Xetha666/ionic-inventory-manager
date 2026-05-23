@@ -1,3 +1,4 @@
+import { supabase } from '@/services/supabaseClient';
 import { IonIcon, IonModal } from '@ionic/react';
 import {
   closeOutline,
@@ -7,9 +8,9 @@ import {
   personAddOutline,
   personOutline,
   shieldCheckmarkOutline,
+  chevronDownOutline,
 } from 'ionicons/icons';
 import React, { useState } from 'react';
-import { supabase } from '@/services/supabaseClient';
 
 interface CreateUserModalProps {
   isOpen: boolean;
@@ -210,43 +211,23 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
             </div>
           </div>
 
-          {/* Tactile Role Selector */}
+          {/* Role Selector Dropdown */}
           <div className="flex flex-col gap-xs mt-xs">
             <label className="text-xs font-semibold text-outline-variant tracking-wider uppercase pl-1">
               Rol del Usuario
             </label>
-            <div className="grid grid-cols-2 gap-sm">
-              <button
-                className={`h-14 rounded-2xl border text-left px-4 flex flex-col justify-center transition-all cursor-pointer ${
-                  role === 'User'
-                    ? 'border-primary bg-primary/5 text-primary'
-                    : 'border-outline-variant/20 bg-surface-container-lowest hover:bg-surface-container/20 text-outline'
-                }`}
-                type="button"
-                onClick={() => setRole('User')}
+            <div className="relative flex items-center">
+              <IonIcon icon={shieldCheckmarkOutline} className="absolute left-3 text-outline text-lg pointer-events-none" />
+              <select
+                className="w-full h-11 pl-10 pr-10 rounded-xl border border-outline-variant/30 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md text-on-surface font-medium transition-all appearance-none cursor-pointer"
+                value={role}
+                onChange={(e) => setRole(e.target.value as 'Administrador' | 'User')}
                 disabled={loading}
               >
-                <span className="text-xs font-bold uppercase tracking-wider">Usuario Común</span>
-                <span className={`text-[10px] ${role === 'User' ? 'text-primary/70' : 'text-outline/70'} mt-0.5`}>
-                  Lectura/Escritura básica
-                </span>
-              </button>
-
-              <button
-                className={`h-14 rounded-2xl border text-left px-4 flex flex-col justify-center transition-all cursor-pointer ${
-                  role === 'Administrador'
-                    ? 'border-primary bg-primary/5 text-primary'
-                    : 'border-outline-variant/20 bg-surface-container-lowest hover:bg-surface-container/20 text-outline'
-                }`}
-                type="button"
-                onClick={() => setRole('Administrador')}
-                disabled={loading}
-              >
-                <span className="text-xs font-bold uppercase tracking-wider">Administrador</span>
-                <span className={`text-[10px] ${role === 'Administrador' ? 'text-primary/70' : 'text-outline/70'} mt-0.5`}>
-                  Acceso y control total
-                </span>
-              </button>
+                <option value="User">Usuario Común (Lectura/Escritura básica)</option>
+                <option value="Administrador">Administrador (Acceso y control total)</option>
+              </select>
+              <IonIcon icon={chevronDownOutline} className="absolute right-3 text-outline text-lg pointer-events-none" />
             </div>
           </div>
 
