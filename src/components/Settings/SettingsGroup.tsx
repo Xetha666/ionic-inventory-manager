@@ -1,5 +1,6 @@
 import React from 'react';
 import SettingsItem, { SettingsItemProps } from './SettingsItem';
+import Separator from './Separator';
 
 interface SettingsGroupProps {
   label: string;
@@ -20,7 +21,9 @@ const SettingsGroup: React.FC<SettingsGroupProps> = ({ label, items }) => {
           <React.Fragment key={item.title}>
             <SettingsItem {...item} />
             {index < items.length - 1 && (
-              <div className="border-b border-outline-variant/20 mx-settings-item-x"></div>
+              <div className="px-settings-item-x">
+                <Separator />
+              </div>
             )}
           </React.Fragment>
         ))}

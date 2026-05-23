@@ -27,7 +27,7 @@ const SettingsItem: React.FC<SettingsItemProps> = ({
       type="button"
       onClick={onClick}
     >
-      <div className="flex items-center gap-md p-3">
+      <div className="flex items-center gap-md m-3">
         {/* Icon Container */}
         <div
           className={`flex size-10  rounded-xl ${iconBgClass} items-center justify-center shrink-0`}
@@ -49,7 +49,7 @@ const SettingsItem: React.FC<SettingsItemProps> = ({
       {/* Action Indicator */}
       <IonIcon
         icon={isExternal ? openOutline : chevronForwardOutline}
-        className="text-outline-variant hover:text-on-surface-variant text-lg shrink-0 ml-sm"
+        className="text-outline-variant hover:text-on-surface-variant text-lg shrink-0"
       />
     </button>
   );
