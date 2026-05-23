@@ -1,5 +1,6 @@
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
+import Settings from '@/pages/Settings';
 import {
   IonApp,
   IonRouterOutlet,
@@ -51,6 +52,10 @@ const App: React.FC = () => (
         
         <Route exact path="/home">
           <Home />
+        </Route>
+
+        <Route exact path="/settings">
+          <Settings />
         </Route>
 
         {/* Redirect empty path to login */}

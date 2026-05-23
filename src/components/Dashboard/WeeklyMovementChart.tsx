@@ -2,13 +2,13 @@ import { IonIcon } from '@ionic/react';
 import { ellipsisHorizontal } from 'ionicons/icons';
 import React from 'react';
 import {
-  AreaChart,
   Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from 'recharts';
 
 const CHART_DATA = [
