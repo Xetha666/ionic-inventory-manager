@@ -67,6 +67,8 @@
 
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
+  --radius-card-lg: 16px;
+  --radius-login-card: 24px;
 
   --spacing-sm: 8px;
   --spacing-stack-gap: 12px;
@@ -76,6 +78,7 @@
   --spacing-md: 16px;
   --spacing-base: 4px;
   --spacing-xs: 4px;
+  --spacing-bottom-nav-safe: 100px;
 
   --font-h1: "Manrope", sans-serif;
   --font-h2: "Manrope", sans-serif;
@@ -110,6 +113,15 @@
   --text-data-tabular: 14px;
   --text-data-tabular--line-height: 20px;
   --text-data-tabular--font-weight: 500;
+
+  --text-caption: 11px;
+  --text-caption--line-height: 14px;
+
+  --shadow-card: 0 4px 12px rgba(30, 41, 59, 0.05);
+  --shadow-login: 0 12px 32px rgba(30, 41, 59, 0.08);
+  --shadow-nav: 0 -4px 12px rgba(30, 41, 59, 0.05);
+
+  --width-login-card: 400px;
 }
 
 body {
@@ -124,3 +136,12 @@ body {
   --ion-color-primary-shade: #2e21b4;
   --ion-color-primary-tint: #493be2;
 }
+
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
