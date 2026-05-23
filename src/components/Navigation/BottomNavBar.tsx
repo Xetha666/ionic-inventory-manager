@@ -1,13 +1,13 @@
 import { IonIcon } from '@ionic/react';
 import {
-  homeOutline,
-  home,
-  cubeOutline,
   cube,
-  qrCodeOutline,
+  cubeOutline,
+  home,
+  homeOutline,
   qrCode,
-  settingsOutline,
-  settings
+  qrCodeOutline,
+  settings,
+  settingsOutline
 } from 'ionicons/icons';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -34,11 +34,10 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ activePath = '/home' }) => 
           <button
             key={item.path}
             onClick={() => history.push(item.path)}
-            className={`flex flex-col items-center justify-center gap-1 min-w-[64px] rounded-xl px-3 py-1 active:scale-90 transition-transform duration-200 cursor-pointer ${
-              isActive
-                ? 'text-primary bg-primary-fixed/30'
-                : 'text-outline-variant hover:text-on-surface-variant'
-            }`}
+            className={`flex flex-col items-center justify-center gap-1 min-w-16 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-200 cursor-pointer ${isActive
+              ? 'text-primary bg-primary-fixed/30'
+              : 'text-outline-variant hover:text-on-surface-variant'
+              }`}
           >
             <IonIcon
               icon={isActive ? item.iconFilled : item.iconOutline}
