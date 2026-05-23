@@ -79,6 +79,8 @@
   --spacing-base: 4px;
   --spacing-xs: 4px;
   --spacing-bottom-nav-safe: 100px;
+  --spacing-settings-item-y: 18px;
+  --spacing-settings-item-x: 20px;
 
   --font-h1: "Manrope", sans-serif;
   --font-h2: "Manrope", sans-serif;
@@ -116,6 +118,11 @@
 
   --text-caption: 11px;
   --text-caption--line-height: 14px;
+
+  --text-label-sm: 11px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--letter-spacing: 0.08em;
+  --text-label-sm--font-weight: 700;
 
   --shadow-card: 0 4px 12px rgba(30, 41, 59, 0.05);
   --shadow-login: 0 12px 32px rgba(30, 41, 59, 0.08);

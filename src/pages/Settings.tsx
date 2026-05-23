@@ -49,12 +49,16 @@ const Settings: React.FC = () => {
       icon: locationOutline,
       title: 'Ubicación',
       subtitle: 'Centro principal, Zonas de envío',
+      iconBgClass: 'bg-blue-100/60',
+      iconColorClass: 'text-blue-600',
       onClick: () => console.log('Click: Ubicación'),
     },
     {
       icon: optionsOutline,
       title: 'Preferencias',
       subtitle: 'Idioma, Unidades, Modos de visualización',
+      iconBgClass: 'bg-blue-100/60',
+      iconColorClass: 'text-blue-600',
       onClick: () => console.log('Click: Preferencias'),
     },
   ];
@@ -65,6 +69,8 @@ const Settings: React.FC = () => {
       title: 'Centro de Ayuda',
       subtitle: 'Preguntas frecuentes, Guías, Chat en vivo',
       isExternal: true,
+      iconBgClass: 'bg-secondary-container/50',
+      iconColorClass: 'text-on-secondary-container',
       onClick: () => console.log('Click: Centro de Ayuda'),
     },
   ];

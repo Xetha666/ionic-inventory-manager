@@ -10,7 +10,7 @@ const SettingsGroup: React.FC<SettingsGroupProps> = ({ label, items }) => {
   return (
     <div className="flex flex-col gap-sm">
       {/* Group Header Label */}
-      <h3 className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider pl-xs">
+      <h3 className="font-body-md text-label-sm text-outline uppercase tracking-widest pl-xs">
         {label}
       </h3>
 
@@ -20,7 +20,7 @@ const SettingsGroup: React.FC<SettingsGroupProps> = ({ label, items }) => {
           <React.Fragment key={item.title}>
             <SettingsItem {...item} />
             {index < items.length - 1 && (
-              <div className="border-b border-outline-variant/20 mx-md"></div>
+              <div className="border-b border-outline-variant/20 mx-settings-item-x"></div>
             )}
           </React.Fragment>
         ))}

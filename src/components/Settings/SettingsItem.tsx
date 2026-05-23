@@ -23,7 +23,7 @@ const SettingsItem: React.FC<SettingsItemProps> = ({
 }) => {
   return (
     <button
-      className="w-full flex items-center justify-between p-md hover:bg-surface-container/30 active:bg-surface-container/60 transition-colors cursor-pointer text-left focus:outline-none"
+      className="w-full flex items-center justify-between py-settings-item-y px-settings-item-x hover:bg-surface-container/30 active:bg-surface-container/60 transition-colors cursor-pointer text-left focus:outline-none"
       type="button"
       onClick={onClick}
     >
