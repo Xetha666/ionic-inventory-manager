@@ -4,6 +4,7 @@ import {
   locationOutline,
   notificationsOutline,
   optionsOutline,
+  peopleOutline,
   shieldHalfOutline,
 } from 'ionicons/icons';
 
@@ -13,6 +14,7 @@ interface SettingsActions {
   onLocation: () => void;
   onPreferences: () => void;
   onHelp: () => void;
+  onUserManagement?: () => void;
 }
 
 export const getSettingsConfig = (actions: SettingsActions) => {
@@ -50,6 +52,17 @@ export const getSettingsConfig = (actions: SettingsActions) => {
     },
   ];
 
+  const adminItems: SettingsItemProps[] = [
+    {
+      icon: peopleOutline,
+      title: 'Gestión de Usuarios',
+      subtitle: 'Crear, editar y administrar permisos de usuarios',
+      iconBgClass: 'bg-orange-100/60',
+      iconColorClass: 'text-orange-600',
+      onClick: actions.onUserManagement,
+    },
+  ];
+
   const supportItems: SettingsItemProps[] = [
     {
       icon: helpCircleOutline,
@@ -65,6 +78,7 @@ export const getSettingsConfig = (actions: SettingsActions) => {
   return {
     accountItems,
     warehouseItems,
+    adminItems,
     supportItems,
   };
 };
