@@ -15,7 +15,7 @@ export const useAuthMiddleware = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === 'SIGNED_OUT') {
         clearLocalUserSession();
-        history.push('/login');
+        history.replace('/login');
       }
     });
 
@@ -23,7 +23,7 @@ export const useAuthMiddleware = () => {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'auth_token' && !e.newValue) {
         clearLocalUserSession();
-        history.push('/login');
+        history.replace('/login');
       }
     };
     window.addEventListener('storage', handleStorageChange);

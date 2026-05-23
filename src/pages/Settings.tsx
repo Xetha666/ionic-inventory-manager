@@ -54,7 +54,7 @@ const Settings: React.FC = () => {
 
   const handleLogout = async () => {
     await logoutUser();
-    history.push('/login');
+    history.replace('/login');
   };
 
   const handleEditProfile = () => {

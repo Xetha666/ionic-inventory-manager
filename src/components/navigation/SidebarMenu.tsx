@@ -8,8 +8,9 @@ import {
   settingsOutline,
   swapHorizontalOutline
 } from 'ionicons/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { getLocalUserSession, logoutUser, UserSession } from '@/services/authService';
 
 interface SidebarMenuProps {
   isOpen: boolean;
@@ -31,16 +32,26 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
   activePath = '/home'
 }) => {
   const history = useHistory();
+  const [userProfile, setUserProfile] = useState<UserSession>(() => getLocalUserSession());
+
+  useEffect(() => {
+    if (isOpen) {
+      setUserProfile(getLocalUserSession());
+    }
+  }, [isOpen]);
 
   const handleNavigate = (path: string) => {
     history.push(path);
     onClose();
   };
 
-  const handleLogout = () => {
-    history.push('/login');
+  const handleLogout = async () => {
+    await logoutUser();
+    history.replace('/login');
     onClose();
   };
+
+  const userInitial = userProfile.name ? userProfile.name.charAt(0).toUpperCase() : 'U';
 
   return (
     <>
@@ -106,11 +117,11 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
         <div className="p-4 border-t border-outline-variant/20 bg-surface-container-lowest">
           <div className="flex items-center gap-md mb-4 p-2 rounded-xl">
             <div className="size-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold shadow-sm">
-              B
+              {userInitial}
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="font-body-md font-semibold text-on-surface truncate">Bryan</span>
-              <span className="text-xs text-outline truncate">Administrador</span>
+              <span className="font-body-md font-semibold text-on-surface truncate">{userProfile.name}</span>
+              <span className="text-xs text-outline truncate">{userProfile.role}</span>
             </div>
           </div>
           <button
