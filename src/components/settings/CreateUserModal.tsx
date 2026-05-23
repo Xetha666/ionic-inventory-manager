@@ -8,10 +8,11 @@ import {
   personAddOutline,
   personOutline,
   shieldCheckmarkOutline,
-  chevronDownOutline,
 } from 'ionicons/icons';
 import React, { useState } from 'react';
 import Spinner from '@/components/common/Spinner';
+import FormInput from '@/components/common/FormInput';
+import FormSelect from '@/components/common/FormSelect';
 
 interface CreateUserModalProps {
   isOpen: boolean;
@@ -133,104 +134,71 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
 
           {/* First Name & Last Name */}
           <div className="grid grid-cols-2 gap-sm">
-            <div className="flex flex-col gap-xs">
-              <label className="text-xs font-semibold text-outline-variant tracking-wider uppercase pl-1">
-                Nombre
-              </label>
-              <div className="relative flex items-center">
-                <IonIcon icon={personOutline} className="absolute left-3 text-outline text-lg" />
-                <input
-                  className="w-full h-11 pl-10 pr-4 rounded-xl border border-outline-variant/30 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md text-on-surface font-medium transition-all"
-                  placeholder="Ej. Juan"
-                  type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  disabled={loading}
-                />
-              </div>
-            </div>
+            <FormInput
+              label="Nombre"
+              icon={personOutline}
+              placeholder="Ej. Juan"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              disabled={loading}
+            />
 
-            <div className="flex flex-col gap-xs">
-              <label className="text-xs font-semibold text-outline-variant tracking-wider uppercase pl-1">
-                Apellido
-              </label>
-              <div className="relative flex items-center">
-                <IonIcon icon={personOutline} className="absolute left-3 text-outline text-lg" />
-                <input
-                  className="w-full h-11 pl-10 pr-4 rounded-xl border border-outline-variant/30 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md text-on-surface font-medium transition-all"
-                  placeholder="Ej. Pérez"
-                  type="text"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  disabled={loading}
-                />
-              </div>
-            </div>
+            <FormInput
+              label="Apellido"
+              icon={personOutline}
+              placeholder="Ej. Pérez"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              disabled={loading}
+            />
           </div>
 
           {/* Email */}
-          <div className="flex flex-col gap-xs">
-            <label className="text-xs font-semibold text-outline-variant tracking-wider uppercase pl-1">
-              Correo Electrónico
-            </label>
-            <div className="relative flex items-center">
-              <IonIcon icon={mailOutline} className="absolute left-3 text-outline text-lg" />
-              <input
-                className="w-full h-11 pl-10 pr-4 rounded-xl border border-outline-variant/30 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md text-on-surface font-medium transition-all"
-                placeholder="correo@ejemplo.com"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={loading}
-              />
-            </div>
-          </div>
+          <FormInput
+            label="Correo Electrónico"
+            icon={mailOutline}
+            placeholder="correo@ejemplo.com"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
+          />
 
           {/* Password */}
-          <div className="flex flex-col gap-xs">
-            <label className="text-xs font-semibold text-outline-variant tracking-wider uppercase pl-1">
-              Contraseña
-            </label>
-            <div className="relative flex items-center">
-              <IonIcon icon={shieldCheckmarkOutline} className="absolute left-3 text-outline text-lg" />
-              <input
-                className="w-full h-11 pl-10 pr-10 rounded-xl border border-outline-variant/30 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md text-on-surface font-medium transition-all"
-                placeholder="Mínimo 6 caracteres"
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={loading}
-              />
+          <FormInput
+            label="Contraseña"
+            icon={shieldCheckmarkOutline}
+            placeholder="Mínimo 6 caracteres"
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={loading}
+            suffix={
               <button
-                className="absolute right-3 text-outline hover:text-on-surface transition-colors cursor-pointer flex items-center justify-center"
+                className="text-outline hover:text-on-surface transition-colors cursor-pointer flex items-center justify-center"
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 disabled={loading}
               >
                 <IonIcon icon={showPassword ? eyeOffOutline : eyeOutline} className="text-lg" />
               </button>
-            </div>
-          </div>
+            }
+          />
 
           {/* Role Selector Dropdown */}
-          <div className="flex flex-col gap-xs mt-xs">
-            <label className="text-xs font-semibold text-outline-variant tracking-wider uppercase pl-1">
-              Rol del Usuario
-            </label>
-            <div className="relative flex items-center">
-              <IonIcon icon={shieldCheckmarkOutline} className="absolute left-3 text-outline text-lg pointer-events-none" />
-              <select
-                className="w-full h-11 pl-10 pr-10 rounded-xl border border-outline-variant/30 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-md text-on-surface font-medium transition-all appearance-none cursor-pointer"
-                value={role}
-                onChange={(e) => setRole(e.target.value as 'Administrador' | 'User')}
-                disabled={loading}
-              >
-                <option value="User">Usuario Común (Lectura/Escritura básica)</option>
-                <option value="Administrador">Administrador (Acceso y control total)</option>
-              </select>
-              <IonIcon icon={chevronDownOutline} className="absolute right-3 text-outline text-lg pointer-events-none" />
-            </div>
-          </div>
+          <FormSelect
+            label="Rol del Usuario"
+            icon={shieldCheckmarkOutline}
+            value={role}
+            onChange={(e) => setRole(e.target.value as 'Administrador' | 'User')}
+            disabled={loading}
+            options={[
+              { value: 'User', label: 'Usuario Común (Lectura/Escritura básica)' },
+              { value: 'Administrador', label: 'Administrador (Acceso y control total)' },
+            ]}
+          />
 
           {/* Form Actions */}
           <div className="flex gap-sm mt-md">
