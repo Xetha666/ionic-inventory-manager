@@ -86,7 +86,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
               <button
                 key={item.path}
                 onClick={() => handleNavigate(item.path)}
-                className={`w-full flex items-center gap-md px-4 py-3 rounded-xl font-label-caps text-[14px] font-medium transition-all duration-200 cursor-pointer ${
+                className={`w-full flex items-center gap-md px-4 py-3 rounded-xl font-label-caps text-sm font-medium transition-all duration-200 cursor-pointer ${
                   isActive 
                     ? 'bg-primary-container text-on-primary-container shadow-sm border-l-4 border-primary' 
                     : 'text-secondary hover:bg-surface-container hover:text-on-surface-variant'
@@ -94,7 +94,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
               >
                 <IonIcon 
                   icon={item.icon} 
-                  className={`text-[20px] ${isActive ? 'text-primary' : 'text-outline'}`} 
+                  className={`text-xl ${isActive ? 'text-primary' : 'text-outline'}`} 
                 />
                 {item.name}
               </button>
@@ -110,14 +110,14 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
             </div>
             <div className="flex flex-col min-w-0">
               <span className="font-body-md font-semibold text-on-surface truncate">Bryan</span>
-              <span className="text-[12px] text-outline truncate">Administrador</span>
+              <span className="text-xs text-outline truncate">Administrador</span>
             </div>
           </div>
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-md px-4 py-3 rounded-xl font-label-caps text-[14px] font-medium text-error hover:bg-error-container/20 transition-all duration-200 cursor-pointer"
+            className="w-full flex items-center gap-md px-4 py-3 rounded-xl font-label-caps text-sm font-medium text-error hover:bg-error-container/20 transition-all duration-200 cursor-pointer"
           >
-            <IonIcon icon={logOutOutline} className="text-[20px]" />
+            <IonIcon icon={logOutOutline} className="text-xl" />
             Cerrar Sesión
           </button>
         </div>

@@ -48,10 +48,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           <div className="relative">
             <IonIcon 
               icon={mailOutline} 
-              className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-[20px]" 
+              className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-xl" 
             />
             <input 
-              className="w-full h-[48px] pl-11 pr-md rounded-[16px] border border-outline/20 bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm" 
+              className="w-full h-12 pl-11 pr-md rounded-card-lg border border-outline/20 bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm" 
               id="email" 
               placeholder="gerente@almacen.com" 
               type="email"
@@ -82,10 +82,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           <div className="relative">
             <IonIcon 
               icon={lockClosedOutline} 
-              className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-[20px]" 
+              className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-xl" 
             />
             <input 
-              className="w-full h-[48px] pl-11 pr-md rounded-[16px] border border-outline/20 bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm" 
+              className="w-full h-12 pl-11 pr-md rounded-card-lg border border-outline/20 bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm" 
               id="password" 
               placeholder="••••••••" 
               type={showPassword ? 'text' : 'password'}
@@ -110,7 +110,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
       {/* Submit Action */}
       <button 
-        className="w-full h-[48px] bg-primary text-on-primary rounded-[16px] font-label-caps text-label-caps uppercase tracking-wider flex items-center justify-center gap-sm hover:bg-primary/90 active:scale-[0.98] transition-all shadow-sm mt-sm cursor-pointer" 
+        className="w-full h-12 bg-primary text-on-primary rounded-card-lg font-label-caps text-label-caps uppercase tracking-wider flex items-center justify-center gap-sm hover:bg-primary/90 active:scale-[0.98] transition-all shadow-sm mt-sm cursor-pointer" 
         type="submit"
         onClick={() => history.push('/home')}
       >

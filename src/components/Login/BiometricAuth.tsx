@@ -31,7 +31,7 @@ const BiometricAuth: React.FC<BiometricAuthProps> = ({
         {showFingerprint && (
           <button 
             aria-label="Usar huella dactilar" 
-            className="size-14 rounded-[16px] border border-outline-variant/50 bg-surface flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary hover:border-primary/30 active:scale-95 transition-all shadow-sm cursor-pointer" 
+            className="size-14 rounded-card-lg border border-outline-variant/50 bg-surface flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary hover:border-primary/30 active:scale-95 transition-all shadow-sm cursor-pointer" 
             type="button"
             onClick={onFingerprintClick}
           >
@@ -46,7 +46,7 @@ const BiometricAuth: React.FC<BiometricAuthProps> = ({
         {showFaceId && (
           <button 
             aria-label="Usar cuenta" 
-            className="size-14 rounded-[16px] border border-outline-variant/50 bg-surface flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary hover:border-primary/30 active:scale-95 transition-all shadow-sm cursor-pointer" 
+            className="size-14 rounded-card-lg border border-outline-variant/50 bg-surface flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary hover:border-primary/30 active:scale-95 transition-all shadow-sm cursor-pointer" 
             type="button"
             onClick={onFaceIdClick}
           >

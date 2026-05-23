@@ -17,17 +17,17 @@ interface BottomNavBarProps {
 }
 
 const navItems = [
-  { name: 'Home', iconOutline: homeOutline, iconFilled: home, path: '/home' },
-  { name: 'Inventory', iconOutline: cubeOutline, iconFilled: cube, path: '/inventory' },
-  { name: 'Scanner', iconOutline: qrCodeOutline, iconFilled: qrCode, path: '/scanner' },
-  { name: 'Settings', iconOutline: settingsOutline, iconFilled: settings, path: '/settings' },
+  { name: 'Inicio', iconOutline: homeOutline, iconFilled: home, path: '/home' },
+  { name: 'Inventario', iconOutline: cubeOutline, iconFilled: cube, path: '/inventory' },
+  { name: 'Escáner', iconOutline: qrCodeOutline, iconFilled: qrCode, path: '/scanner' },
+  { name: 'Ajustes', iconOutline: settingsOutline, iconFilled: settings, path: '/settings' },
 ];
 
 const BottomNavBar: React.FC<BottomNavBarProps> = ({ activePath = '/home' }) => {
   const history = useHistory();
 
   return (
-    <nav className="bg-white/90 backdrop-blur-lg fixed w-full z-50 rounded-t-2xl border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(30,41,59,0.05)] bottom-0 left-0 right-0 h-20 px-lg flex items-center justify-between pb-[env(safe-area-inset-bottom)]">
+    <nav className="bg-white/90 backdrop-blur-lg fixed w-full z-50 rounded-t-2xl border-t border-outline-variant/30 shadow-nav bottom-0 left-0 right-0 h-20 px-lg flex items-center justify-between pb-safe">
       {navItems.map((item) => {
         const isActive = activePath === item.path;
         return (
@@ -42,9 +42,9 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ activePath = '/home' }) => 
           >
             <IonIcon
               icon={isActive ? item.iconFilled : item.iconOutline}
-              className="text-[24px]"
+              className="text-2xl"
             />
-            <span className="font-h2 text-[11px] font-semibold uppercase tracking-wider">
+            <span className="font-h2 text-caption font-semibold uppercase tracking-wider">
               {item.name}
             </span>
           </button>
