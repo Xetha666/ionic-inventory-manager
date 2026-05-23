@@ -11,6 +11,7 @@ import {
   chevronDownOutline,
 } from 'ionicons/icons';
 import React, { useState } from 'react';
+import Spinner from '@/components/common/Spinner';
 
 interface CreateUserModalProps {
   isOpen: boolean;
@@ -247,7 +248,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
               disabled={loading}
             >
               {loading ? (
-                <div className="size-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <Spinner size="md" color="border-white" />
               ) : (
                 'Crear Usuario'
               )}
