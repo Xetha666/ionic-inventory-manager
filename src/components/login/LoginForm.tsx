@@ -1,14 +1,8 @@
+import { setLocalUserSession } from '@/services/authService';
 import { IonIcon } from '@ionic/react';
-import {
-  arrowForwardOutline,
-  eyeOffOutline,
-  eyeOutline,
-  lockClosedOutline,
-  mailOutline
-} from 'ionicons/icons';
+import { arrowForwardOutline, eyeOffOutline, eyeOutline, lockClosedOutline, mailOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { setLocalUserSession } from '@/services/authService';
 
 interface LoginFormProps {
   onLogin?: (email: string, password: string) => void;
@@ -33,6 +27,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         name: 'María López',
         email: 'maria@ejemplo.com',
         role: 'User',
+        avatarUrl: '/avatar.png',
       });
     } else {
       // Default to Juan Pérez (Administrador) for any other email (or juan@ejemplo.com)
@@ -40,6 +35,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         name: 'Juan Pérez',
         email: email.trim() || 'juan@ejemplo.com',
         role: 'Administrador',
+        avatarUrl: '/avatar.png',
       });
     }
 
@@ -126,15 +122,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       </div>
 
       {/* Submit Action */}
-      <button 
-        className="w-full h-12 bg-primary text-on-primary rounded-card-lg font-label-caps text-label-caps uppercase tracking-wider flex items-center justify-center gap-sm hover:bg-primary/90 active:scale-[0.98] transition-all shadow-sm mt-sm cursor-pointer" 
-        type="submit"
-      >
+      <button className="w-full h-12 bg-primary text-on-primary rounded-card-lg font-label-caps text-label-caps uppercase tracking-wider flex items-center justify-center gap-sm hover:bg-primary/90 active:scale-[0.98] transition-all shadow-sm mt-sm cursor-pointer" type="submit">
         Entrar
-        <IonIcon 
-          icon={arrowForwardOutline} 
-          className="text-xl" 
-        />
+        <IonIcon icon={arrowForwardOutline} className="text-xl" />
       </button>
 
       {/* Access Hints */}

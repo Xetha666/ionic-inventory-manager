@@ -51,7 +51,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
     onClose();
   };
 
-  const userInitial = userProfile.name ? userProfile.name.charAt(0).toUpperCase() : 'U';
+
 
   return (
     <>
@@ -116,9 +116,14 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
         {/* User Profile / Logout */}
         <div className="p-4 border-t border-outline-variant/20 bg-surface-container-lowest">
           <div className="flex items-center gap-md mb-4 p-2 rounded-xl">
-            <div className="size-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold shadow-sm">
-              {userInitial}
-            </div>
+            <img
+              alt={userProfile.name}
+              className="size-10 rounded-full object-cover border border-outline-variant/30 shadow-sm bg-primary-fixed flex-shrink-0"
+              src={userProfile.avatarUrl || '/avatar.png'}
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = '/avatar.png';
+              }}
+            />
             <div className="flex flex-col min-w-0">
               <span className="font-body-md font-semibold text-on-surface truncate">{userProfile.name}</span>
               <span className="text-xs text-outline truncate">{userProfile.role}</span>

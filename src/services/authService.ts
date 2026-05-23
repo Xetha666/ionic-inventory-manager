@@ -4,6 +4,7 @@ export interface UserSession {
   name: string;
   email: string;
   role: 'Administrador' | 'User';
+  avatarUrl?: string;
 }
 
 export const getLocalUserSession = (): UserSession => {
@@ -20,6 +21,7 @@ export const getLocalUserSession = (): UserSession => {
     name: 'Alejandro Moreno',
     email: 'admin@inventoryflow.com',
     role: 'Administrador',
+    avatarUrl: '/avatar.png',
   };
 };
 
