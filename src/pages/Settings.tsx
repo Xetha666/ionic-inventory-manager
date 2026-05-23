@@ -1,9 +1,8 @@
 import BottomNavBar from '@/components/navigation/BottomNavBar';
 import SettingsGroup from '@/components/settings/SettingsGroup';
-import SettingsTopBar from '@/components/settings/SettingsTopBar';
 import UserProfile from '@/components/settings/UserProfile';
 import { IonContent, IonIcon, IonPage } from '@ionic/react';
-import { getSettingsConfig } from '@/components/settings/settingsData';
+import { getSettingsConfig } from '@/data/settingsData';
 import { logOutOutline } from 'ionicons/icons';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -13,10 +12,6 @@ const Settings: React.FC = () => {
 
   const handleLogout = () => {
     history.push('/login');
-  };
-
-  const handleSearchClick = () => {
-    console.log('Settings: Search Clicked');
   };
 
   const handleEditProfile = () => {
@@ -33,9 +28,6 @@ const Settings: React.FC = () => {
 
   return (
     <IonPage>
-      {/* Settings Top Bar */}
-      <SettingsTopBar onSearchClick={handleSearchClick} />
-
       {/* Main Settings Canvas */}
       <IonContent scrollY={true}>
         <main className="px-container-padding pb-bottom-nav-safe flex flex-col gap-lg bg-surface">

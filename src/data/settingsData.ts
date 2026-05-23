@@ -1,3 +1,4 @@
+import { SettingsItemProps } from '@/components/settings/SettingsItem';
 import {
   helpCircleOutline,
   locationOutline,
@@ -5,7 +6,6 @@ import {
   optionsOutline,
   shieldHalfOutline,
 } from 'ionicons/icons';
-import { SettingsItemProps } from '@/components/settings/SettingsItem';
 
 interface SettingsActions {
   onSecurity: () => void;
