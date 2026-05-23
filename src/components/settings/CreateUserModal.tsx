@@ -1,4 +1,4 @@
-import { IonIcon } from '@ionic/react';
+import { IonIcon, IonModal } from '@ionic/react';
 import {
   closeOutline,
   eyeOffOutline,
@@ -25,8 +25,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-
-  if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,15 +88,12 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      {/* Blurred Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/45 backdrop-blur-sm transition-opacity duration-300"
-        onClick={onClose}
-      />
-
-      {/* Modal Container */}
-      <div className="bg-surface border border-outline-variant/30 w-full max-w-md rounded-3xl shadow-dialog overflow-hidden flex flex-col relative z-10 animate-in fade-in zoom-in-95 duration-200">
+    <IonModal
+      isOpen={isOpen}
+      onDidDismiss={onClose}
+      className="create-user-modal"
+    >
+      <div className="flex flex-col h-full bg-surface-container-lowest overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-outline-variant/10">
           <div className="flex items-center gap-sm">
@@ -114,13 +109,14 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
             className="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:bg-outline-variant/10 hover:text-on-surface transition-colors cursor-pointer"
             type="button"
             onClick={onClose}
+            disabled={loading}
           >
             <IonIcon icon={closeOutline} className="text-2xl" />
           </button>
         </div>
 
         {/* Form Body */}
-        <form className="p-6 flex flex-col gap-md overflow-y-auto max-h-[80vh]" onSubmit={handleSubmit}>
+        <form className="p-6 flex flex-col gap-md" onSubmit={handleSubmit}>
           {message && (
             <div
               className={`p-4 rounded-2xl text-sm font-medium border ${
@@ -278,7 +274,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
           </div>
         </form>
       </div>
-    </div>
+    </IonModal>
   );
 };
 
