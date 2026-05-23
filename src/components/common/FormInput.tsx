@@ -1,5 +1,5 @@
-import React from 'react';
 import { IonIcon } from '@ionic/react';
+import React from 'react';
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;

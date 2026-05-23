@@ -1,6 +1,6 @@
-import React from 'react';
 import { IonIcon } from '@ionic/react';
 import { chevronDownOutline } from 'ionicons/icons';
+import React from 'react';
 
 interface FormSelectOption {
   value: string;

@@ -1,3 +1,6 @@
+import FormInput from '@/components/common/FormInput';
+import FormSelect from '@/components/common/FormSelect';
+import Spinner from '@/components/common/Spinner';
 import { supabase } from '@/services/supabaseClient';
 import { IonIcon, IonModal } from '@ionic/react';
 import {
@@ -10,9 +13,6 @@ import {
   shieldCheckmarkOutline,
 } from 'ionicons/icons';
 import React, { useState } from 'react';
-import Spinner from '@/components/common/Spinner';
-import FormInput from '@/components/common/FormInput';
-import FormSelect from '@/components/common/FormSelect';
 
 interface CreateUserModalProps {
   isOpen: boolean;

@@ -8,13 +8,17 @@ import { IonContent, IonIcon, IonPage } from '@ionic/react';
 import { logOutOutline } from 'ionicons/icons';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { getLocalUserSession, logoutUser } from '@/services/authService';
 
 const Settings: React.FC = () => {
   const history = useHistory();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userProfile, setUserProfile] = useState<{ name: string; role: string }>({
-    name: 'Alejandro Moreno',
-    role: 'Administrador', // Default to Administrador to easily test in mock mode
+  const [userProfile, setUserProfile] = useState<{ name: string; role: string }>(() => {
+    const session = getLocalUserSession();
+    return {
+      name: session.name,
+      role: session.role,
+    };
   });
 
   useEffect(() => {
@@ -48,7 +52,8 @@ const Settings: React.FC = () => {
     fetchUserProfile();
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await logoutUser();
     history.push('/login');
   };
 

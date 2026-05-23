@@ -5,16 +5,28 @@ import WeeklyMovementChart from '@/components/dashboard/WeeklyMovementChart';
 import BottomNavBar from '@/components/navigation/BottomNavBar';
 import { IonContent, IonPage } from '@ionic/react';
 import { cubeOutline, warningOutline } from 'ionicons/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getLocalUserSession, UserSession } from '@/services/authService';
 
 const Home: React.FC = () => {
+  const [session, setSession] = useState<UserSession | null>(null);
+
+  useEffect(() => {
+    setSession(getLocalUserSession());
+  }, []);
+
+  const greetingName = session ? session.name.split(' ')[0] : 'Usuario';
+  const roleName = session ? session.role : 'Usuario';
+  const title = `¡Hola, ${greetingName}!`;
+  const subtitle = `Resumen general de hoy (Rol: ${roleName})`;
+
   return (
     <IonPage>
       {/* Main Canvas */}
       <IonContent scrollY={true}>
         <main className="px-container-padding pt-lg pb-bottom-nav-safe flex flex-col gap-lg">
           {/* Header Section */}
-          <DashboardHeader />
+          <DashboardHeader title={title} subtitle={subtitle} />
 
           {/* Bento Grid Metrics */}
           <section className="flex flex-col gap-sm">
