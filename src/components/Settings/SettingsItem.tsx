@@ -27,10 +27,10 @@ const SettingsItem: React.FC<SettingsItemProps> = ({
       type="button"
       onClick={onClick}
     >
-      <div className="flex items-center gap-md min-w-0">
+      <div className="flex items-center gap-md p-3">
         {/* Icon Container */}
         <div
-          className={`flex w-10 h-10 rounded-xl ${iconBgClass} items-center justify-center shrink-0`}
+          className={`flex size-10  rounded-xl ${iconBgClass} items-center justify-center shrink-0`}
         >
           <IonIcon icon={icon} className={`${iconColorClass} text-xl`} />
         </div>
