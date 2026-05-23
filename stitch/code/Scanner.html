@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InventoryFlow - Scanner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdbcc",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#302f39",
+                        "secondary": "#545f73",
+                        "surface-bright": "#fcf8ff",
+                        "outline-variant": "#c7c4d8",
+                        "on-tertiary-fixed": "#351000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "surface-container-low": "#f5f2ff",
+                        "surface": "#fcf8ff",
+                        "surface-tint": "#4d44e3",
+                        "surface-variant": "#e4e1ee",
+                        "surface-dim": "#dcd8e5",
+                        "tertiary": "#7e3000",
+                        "secondary-container": "#d5e0f8",
+                        "tertiary-container": "#a44100",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d8e3fb",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f0ecf9",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "primary-container": "#4f46e5",
+                        "on-surface-variant": "#464555",
+                        "surface-container-highest": "#e4e1ee",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f3effc",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#e2dfff",
+                        "on-primary-fixed": "#0f0069",
+                        "on-secondary-container": "#586377",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-background": "#1b1b24",
+                        "on-primary": "#ffffff",
+                        "primary": "#3525cd",
+                        "on-surface": "#1b1b24",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-primary-container": "#dad7ff",
+                        "surface-container-high": "#eae6f4",
+                        "on-secondary-fixed": "#111c2d",
+                        "inverse-primary": "#c3c0ff",
+                        "outline": "#777587",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-tertiary-container": "#ffd2be",
+                        "background": "#fcf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "stack-gap": "12px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "container-padding": "16px",
+                        "md": "16px",
+                        "base": "4px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "data-tabular": ["inter"],
+                        "h1": ["manrope"],
+                        "body-lg": ["inter"],
+                        "label-caps": ["inter"],
+                        "body-md": ["inter"],
+                        "h2": ["manrope"]
+                    },
+                    "fontSize": {
+                        "data-tabular": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "h1": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h2": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background h-screen w-full overflow-hidden relative flex flex-col font-body-md antialiased">
+<!-- CAMERA VIEWFINDER BACKGROUND -->
+<div class="absolute inset-0 z-0 bg-inverse-surface">
+<img alt="Dark blurred background of a modern industrial warehouse aisle with high shelving units, professional logistics environment" class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJHUiZA7eSRlL4NYofusokUikgH22v7s-RuNxe7zCYby0Exe17TzSD157y9zipiedSCSTr-NOfbvZFWgF2HJ9hTE8RqRvnjApdGrkz5CzSXJRqzFOzZH5c3HtU1ZkKwlPbwwjwlwXfHLYR_watOH65pIY98rCiGba183F73jndLA5Fxw2wBCvIXF-j-m2qPlcoCGILLhKue4H_E7htzU5-ycuh-1PtunApmB_7osbPN26r1fVYDLgfkgzHwCj_m99wdcN5m32V22Up"/>
+<!-- Scanner Reticle -->
+<div class="absolute inset-0 flex items-center justify-center pb-32">
+<div class="w-64 h-64 relative">
+<!-- Corners -->
+<div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+<!-- Laser Line -->
+<div class="absolute top-1/2 left-4 right-4 h-0.5 bg-error shadow-[0_0_8px_rgba(186,26,26,0.8)] z-10 transform -translate-y-1/2"></div>
+<p class="absolute -bottom-8 left-0 right-0 text-center font-label-caps text-label-caps text-on-primary tracking-widest opacity-80">ALINEAR CÓDIGO</p>
+</div>
+</div>
+<!-- Dark gradient overlay for bottom to make modal pop -->
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-inverse-surface/90 to-transparent pointer-events-none"></div>
+</div>
+<!-- TOP APP BAR -->
+<header class="docked full-width top-0 sticky z-50 flex items-center justify-between px-4 h-16 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60 shadow-sm dark:shadow-none">
+<div class="flex items-center gap-sm">
+<img alt="User profile photo of a professional warehouse manager" class="w-8 h-8 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBylg-2Fy7_NnQF2qWOcXG1RgR0nwp0UqstAIfPircYUeO_4OIDwX9ggjnAXMsSSIPjBOZUxxTTX-r5Q_d5fNLceg62Et-zUb_-kGUbGZlAiHsuDwTWmDEVvcHe9Nur4HGeVCfgauCa0r36DcxABLNT7otj5LYeVMEoPkEeRRsTbLENBC_LKByLjGWV_GvyYFhGuN4fDBRUmGFYiJN070c0EmNpH0oCcEwLdzcLXSaa_4RwxNM9NEm4g3GQa5wRZafGD_rao2Rae1b"/>
+<span class="text-xl font-black tracking-tight text-indigo-600 dark:text-indigo-400">InventoryFlow</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-150 text-indigo-600 dark:text-indigo-400">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<!-- MAIN CONTENT AREA (Spacer for layout) -->
+<main class="flex-1 relative z-10 pointer-events-none"></main>
+<!-- STOCK ADJUSTMENT MODAL -->
+<div class="absolute bottom-[96px] left-0 right-0 px-container-padding z-40 pointer-events-auto">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_24px_48px_-12px_rgba(30,41,59,0.25)] border border-outline-variant/30 overflow-hidden flex flex-col">
+<!-- Success/Scan indicator -->
+<div class="h-1 w-full bg-primary"></div>
+<div class="p-lg flex flex-col gap-lg">
+<!-- Product Info -->
+<div class="flex items-center gap-md">
+<img alt="Close-up of premium wireless headphones on a clean white surface" class="w-12 h-12 rounded-lg object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBNcInJTzuKbNiUCFuy3mbqVfTdqxJxBa-1pYOXupQsp3N5oYY1ELLw2zeG8MP58aDw6ZOVRcuWMud-TTfsR8D8-jNYIwRGA5oqZQ-CqbWh0cmzHOvzO2Jin1924Keyu_ptZ2LTML8dCMbYF9tYcL7IzcNdRBQ6hE7CGyiYsdsgQQwXEzAXbSWYKxbixfZLoHlwH7aNGRu3tl5fc9RKPkhO09AzY0KbhLZWfbXr3n5Zpd1YPj_5PrvKg633qtum0jiLAdh7yJDYuRS"/>
+<div class="flex flex-col">
+<span class="font-data-tabular text-data-tabular text-secondary">SKU: WH-1000XM5</span>
+<span class="font-h2 text-h2 text-on-surface truncate">Sony Noise Cancelling HD</span>
+</div>
+</div>
+<!-- Action Tabs -->
+<div class="flex p-1 bg-surface-container rounded-lg">
+<button class="flex-1 py-2 rounded-md bg-surface-container-lowest shadow-sm font-label-caps text-label-caps text-on-surface text-center">ENTRADA</button>
+<button class="flex-1 py-2 rounded-md font-label-caps text-label-caps text-secondary text-center hover:bg-surface-container-highest transition-colors">SALIDA</button>
+</div>
+<!-- Quantity Control -->
+<div class="flex items-center justify-between bg-surface-container-low rounded-xl border border-outline-variant/50 p-sm">
+<button class="w-12 h-12 flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<div class="flex-1 flex flex-col items-center justify-center">
+<span class="font-label-caps text-label-caps text-secondary mb-1">CANTIDAD</span>
+<input class="w-24 text-center font-h1 text-h1 text-primary bg-transparent border-none focus:ring-0 p-0 m-0" readonly="" type="number" value="12"/>
+</div>
+<button class="w-12 h-12 flex items-center justify-center rounded-lg text-primary hover:bg-primary-fixed active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<!-- Confirm Button -->
+<button class="w-full h-[48px] bg-primary text-on-primary font-label-caps text-label-caps rounded-lg hover:bg-on-primary-fixed-variant active:scale-95 transition-all flex items-center justify-center gap-sm shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    Confirmar
+                </button>
+</div>
+</div>
+</div>
+<!-- BOTTOM NAV BAR -->
+<footer class="fixed bottom-0 left-0 right-0 h-20 px-6 flex items-center justify-between pb-safe w-full z-50 rounded-t-2xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(30,41,59,0.05)] bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg">
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 w-16 h-14 group">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 w-16 h-14 group">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform" data-icon="inventory_2">inventory_2</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider">Inventory</span>
+</button>
+<!-- ACTIVE NAV ITEM -->
+<button class="flex flex-col items-center justify-center text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl px-3 py-1 w-20 h-16 -mt-2 shadow-sm border border-indigo-100 dark:border-indigo-800">
+<span class="material-symbols-outlined mb-1" data-icon="qr_code_scanner" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider">Scanner</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 w-16 h-14 group">
+<span class="material-symbols-outlined mb-1 group-hover:scale-110 transition-transform" data-icon="settings">settings</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider">Settings</span>
+</button>
+</footer>
+</body></html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f0ecf9",
+                        "surface-container-high": "#eae6f4",
+                        "surface": "#fcf8ff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-surface": "#1b1b24",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#0f0069",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "surface-tint": "#4d44e3",
+                        "on-primary-container": "#dad7ff",
+                        "on-background": "#1b1b24",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-tertiary-fixed": "#351000",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3effc",
+                        "secondary-fixed": "#d8e3fb",
+                        "tertiary-container": "#a44100",
+                        "tertiary": "#7e3000",
+                        "surface-container-low": "#f5f2ff",
+                        "on-tertiary-container": "#ffd2be",
+                        "on-secondary-container": "#586377",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "on-secondary-fixed": "#111c2d",
+                        "inverse-primary": "#c3c0ff",
+                        "secondary": "#545f73",
+                        "on-surface-variant": "#464555",
+                        "outline-variant": "#c7c4d8",
+                        "secondary-container": "#d5e0f8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fcf8ff",
+                        "surface-container-highest": "#e4e1ee",
+                        "primary-container": "#4f46e5",
+                        "surface-dim": "#dcd8e5",
+                        "inverse-surface": "#302f39",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "background": "#fcf8ff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "surface-variant": "#e4e1ee",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "primary-fixed": "#e2dfff",
+                        "outline": "#777587",
+                        "primary": "#3525cd",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "16px",
+                        "xs": "4px",
+                        "stack-gap": "12px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter", "sans-serif"],
+                        "h1": ["Manrope", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "data-tabular": ["Inter", "sans-serif"],
+                        "h2": ["Manrope", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "h1": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "data-tabular": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "h2": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md font-['Manrope'] font-bold text-lg docked full-width top-0 sticky z-50 border-b border-slate-200/60 dark:border-slate-800/60 shadow-sm dark:shadow-none flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged warehouse operations manager with a confident and friendly expression. He is wearing a clean charcoal polo shirt, standing in a bright, modern office environment with soft, diffused morning light. The overall aesthetic is clean and corporate, featuring a sophisticated palette of indigo and soft grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxxEVQhb6pYr77SWFdMfmIchf87c5TZoQaJX-lOia8S24b2CCFK5MIDU4cyK8evSOAlY3v6vainweqOz4wjyXSOy3kesdO5i9uVjmyM7kqGzzRYN27p5d5iMkHYLvFpAk_ZQQF-nylIP5wsx9-yEflMP7Skm2aVrq8asw9_QHoWmbXjODwtZM7w1EL3xDvud-O-8QPmqjTXjUEEtnrGDM3x6imfVUxxVOLlUnMGxrwlP7XscaWWrPCXVR5EsMttZ_60ADL7AoAr17_"/>
+</div>
+<span class="text-xl font-black tracking-tight text-indigo-600 dark:text-indigo-400">InventoryFlow</span>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</header>
+<main class="max-w-md mx-auto px-container-padding pt-lg pb-32">
+<!-- Profile Section -->
+<section class="mb-xl flex flex-col items-center">
+<div class="relative mb-md">
+<div class="w-24 h-24 rounded-full border-4 border-surface-container-lowest shadow-sm overflow-hidden">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="A detailed portrait of a logistics coordinator in a modern workspace. The lighting is bright and high-key, emphasizing a professional and reliable atmosphere. The background shows blurred architectural elements of a clean warehouse facility. The color scheme is dominated by white, indigo, and soft slate tones, conveying technological precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABWb6DHtAWTYVc4bVs0uY97H0DbBGVRLYjFNbx_v2jwy01kHn0kBACdtvbECG8UHpLTA8DHI-QQy9AkPUj3VciMljyRlwQ1i2UelDAY-KWjEqQRXe6Y_MeyifwCE65gRKH06Arh1Ku3BVMUvL0GGi4QHqyZa3fcRVuA7PrlI-aVlWViWo8nlzUphKBuh-Zg3RPBDuxHZA3F-h-RSilYBDsnm5OLkXQX5zWPbPAzf8oA3MXkczvK8y2Ko9yhzNKEsoCP0SpT9ZZmRjB"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center border-2 border-surface shadow-sm active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+</div>
+<h1 class="font-h1 text-h1 text-center">Alejandro Moreno</h1>
+<p class="font-body-md text-secondary mt-1">Gerente de Operaciones</p>
+</section>
+<!-- Settings Groups -->
+<div class="space-y-lg">
+<!-- Group: Account -->
+<div>
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-stack-gap uppercase tracking-widest px-1">Account</h2>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+<div class="text-left">
+<span class="block font-body-lg text-body-lg text-on-surface">Security</span>
+<span class="block font-body-md text-on-surface-variant text-xs">Password, 2FA, Session history</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<div class="h-[1px] bg-outline-variant mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div class="text-left">
+<span class="block font-body-lg text-body-lg text-on-surface">Notifications</span>
+<span class="block font-body-md text-on-surface-variant text-xs">Push, Email, Inventory alerts</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Group: Warehouse -->
+<div>
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-stack-gap uppercase tracking-widest px-1">Warehouse</h2>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div class="text-left">
+<span class="block font-body-lg text-body-lg text-on-surface">Location</span>
+<span class="block font-body-md text-on-surface-variant text-xs">Primary hub, Shipping zones</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<div class="h-[1px] bg-outline-variant mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</div>
+<div class="text-left">
+<span class="block font-body-lg text-body-lg text-on-surface">Preferences</span>
+<span class="block font-body-md text-on-surface-variant text-xs">Language, Units, View modes</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Group: Support -->
+<div>
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-stack-gap uppercase tracking-widest px-1">Support</h2>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:bg-surface-container">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</div>
+<div class="text-left">
+<span class="block font-body-lg text-body-lg text-on-surface">Help Center</span>
+<span class="block font-body-md text-on-surface-variant text-xs">FAQs, Guides, Live chat</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Destructive Action -->
+<div class="pt-md">
+<button class="w-full h-12 rounded-xl flex items-center justify-center gap-2 border border-error text-error font-semibold hover:bg-error-container/20 active:scale-[0.98] transition-all duration-150">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-lg">Cerrar Sesión</span>
+</button>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-40 py-md">
+<p class="font-label-caps text-[10px] uppercase">InventoryFlow v2.4.1</p>
+<p class="font-label-caps text-[10px]">Made with precision for global logistics</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 h-20 px-6 flex items-center justify-between pb-safe bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg fixed bottom-0 w-full z-50 rounded-t-2xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(30,41,59,0.05)]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider mt-1">Inventory</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 active:scale-90 transition-transform duration-200" href="#">
+<div class="bg-indigo-600 text-white w-12 h-12 rounded-full flex items-center justify-center mb-1 -mt-6 shadow-lg shadow-indigo-200">
+<span class="material-symbols-outlined text-[28px]" data-icon="qr_code_scanner">qr_code_scanner</span>
+</div>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider">Scanner</span>
+</a>
+<a class="flex flex-col items-center justify-center text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 rounded-xl px-3 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-['Manrope'] text-[11px] font-semibold uppercase tracking-wider mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

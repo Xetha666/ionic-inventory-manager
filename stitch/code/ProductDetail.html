@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#4f46e5",
+                        "outline": "#777587",
+                        "error-container": "#ffdad6",
+                        "primary": "#3525cd",
+                        "on-secondary-fixed": "#111c2d",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "surface-container-highest": "#e4e1ee",
+                        "surface-container-high": "#eae6f4",
+                        "surface-container": "#f0ecf9",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "inverse-primary": "#c3c0ff",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-variant": "#e4e1ee",
+                        "surface-bright": "#fcf8ff",
+                        "on-background": "#1b1b24",
+                        "tertiary-container": "#a44100",
+                        "surface-dim": "#dcd8e5",
+                        "secondary": "#545f73",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#dad7ff",
+                        "surface": "#fcf8ff",
+                        "on-secondary-container": "#586377",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#ffd2be",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "tertiary": "#7e3000",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fcf8ff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-surface-variant": "#464555",
+                        "inverse-on-surface": "#f3effc",
+                        "inverse-surface": "#302f39",
+                        "surface-container-low": "#f5f2ff",
+                        "on-surface": "#1b1b24",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "primary-fixed": "#e2dfff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "secondary-fixed": "#d8e3fb",
+                        "surface-tint": "#4d44e3",
+                        "secondary-container": "#d5e0f8",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#351000",
+                        "outline-variant": "#c7c4d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "4px",
+                        "container-padding": "16px",
+                        "xl": "32px",
+                        "stack-gap": "12px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "data-tabular": ["Inter"],
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "data-tabular": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "h2": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F8FAFC;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200/60 shadow-sm flex items-center justify-between px-4 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="font-['Manrope'] font-bold text-lg text-indigo-600">InventoryFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface">edit</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface">search</span>
+</button>
+</div>
+</header>
+<main class="max-w-md mx-auto pb-32">
+<!-- Hero Product Image -->
+<section class="p-container-padding">
+<div class="relative w-full aspect-square bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+<img alt="ThinkPad X1 Carbon Gen 10" class="w-full h-full object-cover" data-alt="A professional studio photograph of a high-end black ThinkPad X1 Carbon laptop set against a clean, minimalist white background with soft, diffused cinematic lighting. The image captures the sleek, carbon-fiber texture of the device with a shallow depth of field. The overall aesthetic is modern and corporate, reflecting a high-tech inventory management system palette of crisp whites and subtle indigo shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSda_UrvVVfO86ibGJYkQoFjRyPSKN_nq90QDB60IifWYkM1r_Swd02JynxLM6pMzH29rvLkuwCk4qAZ3KYzX-u8ZmmphN_sM1klciFPEst5ebusAKVw0TN-ZJWqZ3_KzGyDn2TeYs9QM_TYNZBqmWnNpAhES5hS5THqWztRbDd2nqNbpN6ZFGH1FEobQ6x3z0FocmEVc6QvdVpxXPu14M6oQfEeH3ZUd8Ss1z_YbgwxBmh82YDBMzSCJ1j1o9rDDX84t9iB5sTNhu"/>
+<div class="absolute top-4 right-4">
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-label-caps font-bold">Disponible</span>
+</div>
+</div>
+</section>
+<!-- Product Identity -->
+<section class="px-container-padding space-y-base">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-h1 text-h1 text-on-surface">ThinkPad X1 Carbon Gen 10</h2>
+<p class="font-label-caps text-outline uppercase tracking-widest mt-1">SKU: LNV-X1C10-2024</p>
+</div>
+</div>
+</section>
+<!-- Main Stats Bento Grid -->
+<section class="px-container-padding py-lg grid grid-cols-2 gap-md">
+<div class="bg-white p-md rounded-xl border border-slate-200 flex flex-col items-center justify-center text-center">
+<p class="font-label-caps text-outline uppercase mb-xs">Stock Actual</p>
+<p class="font-h1 text-[36px] text-primary-container leading-none">42</p>
+<p class="font-body-md text-secondary mt-xs">unidades</p>
+</div>
+<div class="bg-white p-md rounded-xl border border-slate-200 space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container">location_on</span>
+<div>
+<p class="font-label-caps text-outline uppercase">Ubicación</p>
+<p class="font-data-tabular text-on-surface">Pasillo 4, B</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container">local_shipping</span>
+<div>
+<p class="font-label-caps text-outline uppercase">Proveedor</p>
+<p class="font-data-tabular text-on-surface">Lenovo Corp</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Description Section -->
+<section class="px-container-padding space-y-sm">
+<h3 class="font-h2 text-h2 text-on-surface">Descripción</h3>
+<div class="bg-white p-md rounded-xl border border-slate-200">
+<p class="font-body-lg text-on-surface-variant">
+                    Ultrabook premium con chasis de fibra de carbono reforzado. Procesador Intel Core i7 de 12ª gen, 16GB RAM y 512GB SSD. Pantalla 14" WUXGA. Diseñado para movilidad extrema y rendimiento empresarial.
+                </p>
+</div>
+</section>
+<!-- History List -->
+<section class="px-container-padding py-lg space-y-sm">
+<div class="flex justify-between items-center">
+<h3 class="font-h2 text-h2 text-on-surface">Historial de Movimientos</h3>
+<span class="material-symbols-outlined text-outline">history</span>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
+<!-- Row 1 -->
+<div class="p-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-600">add</span>
+</div>
+<div>
+<p class="font-data-tabular text-on-surface">Entrada de stock</p>
+<p class="font-label-caps text-outline">12 May, 2024 • ID: 8821</p>
+</div>
+</div>
+<p class="font-h2 text-green-600">+15</p>
+</div>
+<!-- Row 2 -->
+<div class="p-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600">remove</span>
+</div>
+<div>
+<p class="font-data-tabular text-on-surface">Asignación a IT</p>
+<p class="font-label-caps text-outline">10 May, 2024 • ID: 8799</p>
+</div>
+</div>
+<p class="font-h2 text-red-600">-3</p>
+</div>
+<!-- Row 3 -->
+<div class="p-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600">remove</span>
+</div>
+<div>
+<p class="font-data-tabular text-on-surface">Venta Directa</p>
+<p class="font-label-caps text-outline">08 May, 2024 • ID: 8740</p>
+</div>
+</div>
+<p class="font-h2 text-red-600">-1</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action Bar (Transactional Suppression of Nav) -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-slate-200 p-4 pb-safe flex gap-4 z-50">
+<button class="flex-1 h-12 bg-white border border-slate-300 text-indigo-600 rounded-xl font-body-lg font-semibold flex items-center justify-center gap-2 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">analytics</span>
+            Generar Reporte
+        </button>
+<button class="flex-1 h-12 bg-primary-container text-white rounded-xl font-body-lg font-semibold flex items-center justify-center gap-2 shadow-lg shadow-indigo-200 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">inventory</span>
+            Ajustar Stock
+        </button>
+</div>
+</body></html>
