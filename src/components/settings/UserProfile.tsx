@@ -1,7 +1,8 @@
 import { IonIcon } from '@ionic/react';
 import { pencil } from 'ionicons/icons';
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Cropper from 'react-easy-crop';
+import { getCroppedImg } from '@/utils/cropImage';
 
 interface UserProfileProps {
   name?: string;
@@ -9,45 +10,6 @@ interface UserProfileProps {
   avatarUrl?: string;
   onAvatarChange?: (newAvatarUrl: string) => void;
 }
-
-// Helper to crop image using HTML5 Canvas
-const getCroppedImg = (imageSrc: string, pixelCrop: { x: number; y: number; width: number; height: number }): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const image = new Image();
-    image.src = imageSrc;
-    image.onload = () => {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-
-      if (!ctx) {
-        reject(new Error('No 2d context'));
-        return;
-      }
-
-      // Set canvas size to the cropped area size
-      canvas.width = pixelCrop.width;
-      canvas.height = pixelCrop.height;
-
-      // Draw the cropped portion of the image onto the canvas
-      ctx.drawImage(
-        image,
-        pixelCrop.x,
-        pixelCrop.y,
-        pixelCrop.width,
-        pixelCrop.height,
-        0,
-        0,
-        pixelCrop.width,
-        pixelCrop.height
-      );
-
-      // Convert to Base64 data URL
-      const base64Image = canvas.toDataURL('image/png');
-      resolve(base64Image);
-    };
-    image.onerror = (error) => reject(error);
-  });
-};
 
 const UserProfile: React.FC<UserProfileProps> = ({
   name = 'Alejandro Moreno',
@@ -108,7 +70,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
   return (
     <div className="flex flex-col items-center justify-center pt-xl pb-lg">
       {/* Avatar Container */}
-      <div className="relative size-36 rounded-full border-2 border-white shadow-sm">
+      <div className="relative size-36 rounded-full border-2 border-primary shadow-sm">
         <input
           type="file"
           ref={fileInputRef}
