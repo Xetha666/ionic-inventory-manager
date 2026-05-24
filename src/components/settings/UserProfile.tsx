@@ -42,7 +42,7 @@ const getCroppedImg = (imageSrc: string, pixelCrop: { x: number; y: number; widt
       );
 
       // Convert to Base64 data URL
-      const base64Image = canvas.toDataURL('image/jpeg', 0.85);
+      const base64Image = canvas.toDataURL('image/png');
       resolve(base64Image);
     };
     image.onerror = (error) => reject(error);
@@ -148,7 +148,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
 
       {/* Manual Cropping Modal */}
       {imageSrc && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/85 p-4 animate-fade-in">
+        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/85 p-4 animate-fade-in">
           <div
             className="relative bg-surface-container-lowest rounded-login p-6 flex flex-col gap-md shadow-login"
             style={{ width: '100%', maxWidth: '400px' }}
