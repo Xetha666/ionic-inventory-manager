@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
 import { getCroppedImg } from '@/utils/cropImage';
+import React, { useCallback, useRef, useState } from 'react';
 
 export const useAvatarEditor = (onAvatarChange?: (newAvatarUrl: string) => void) => {
   const fileInputRef = useRef<HTMLInputElement>(null);

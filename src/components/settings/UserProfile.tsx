@@ -1,8 +1,8 @@
+import { useAvatarEditor } from '@/hooks/useAvatarEditor';
 import { IonIcon } from '@ionic/react';
 import { pencil } from 'ionicons/icons';
 import React from 'react';
 import Cropper from 'react-easy-crop';
-import { useAvatarEditor } from '@/hooks/useAvatarEditor';
 
 interface UserProfileProps {
   name?: string;
@@ -12,24 +12,15 @@ interface UserProfileProps {
 }
 
 const UserProfile: React.FC<UserProfileProps> = ({
-  name = 'Alejandro Moreno',
-  role = 'Gerente de Operaciones',
-  avatarUrl = '/avatar.png',
+  name,
+  role,
+  avatarUrl,
   onAvatarChange,
 }) => {
-  const {
-    fileInputRef,
-    imageSrc,
-    crop,
-    zoom,
-    setCrop,
-    setZoom,
-    handleAvatarClick,
-    handleFileChange,
-    onCropComplete,
-    handleSave,
-    handleCancel,
-  } = useAvatarEditor(onAvatarChange);
+  const {fileInputRef,imageSrc,
+    crop,setCrop,
+    zoom,setZoom,
+    handleAvatarClick,handleFileChange,onCropComplete,handleSave,handleCancel,} = useAvatarEditor(onAvatarChange);
 
   return (
     <div className="flex flex-col items-center justify-center pt-xl pb-lg">
