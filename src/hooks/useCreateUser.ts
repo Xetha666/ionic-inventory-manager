@@ -105,23 +105,7 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
       });
 
       if (error) {
-        // Fallback for development if the RPC is not installed in the Supabase instance yet
-        console.warn('RPC create_new_user not found or failed, using mock client creation:', error.message);
-        
-        // Simulating mock creation
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        setMessage({
-          type: 'success',
-          text: `Usuario ${fullName} creado exitosamente con rol ${role}.`,
-        });
-        
-        // Reset form
-        setFullName('');
-        setUsername('');
-        setEmail('');
-        setPassword('');
-        setRole('User');
-        return;
+        throw new Error(error.message);
       }
 
       setMessage({
