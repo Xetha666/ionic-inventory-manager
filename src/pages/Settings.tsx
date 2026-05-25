@@ -30,7 +30,7 @@ const Settings: React.FC = () => {
           const { data: profile } = await supabase
             .from('profiles')
             .select(`
-              fullname,
+              full_name,
               roles ( name )
             `)
             .eq('id', user.id)
@@ -40,7 +40,7 @@ const Settings: React.FC = () => {
             const roleName = (profile.roles as any)?.name || 'User';
             setUserProfile((prev) => ({
               ...prev,
-              name: profile.fullname || 'Usuario',
+              name: (profile as any).full_name || 'Usuario',
               role: roleName,
             }));
           }
