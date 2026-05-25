@@ -144,7 +144,7 @@ CREATE OR REPLACE FUNCTION public.get_user_email(username_input TEXT)
 RETURNS TEXT
 LANGUAGE plpgsql
 SECURITY DEFINER
-SET search_path = public, auth
+SET search_path = public
 AS $$
 DECLARE
   user_email TEXT;
