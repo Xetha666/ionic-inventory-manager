@@ -3,21 +3,22 @@ import CreateUserModal from '@/components/settings/CreateUserModal';
 import SettingsGroup from '@/components/settings/SettingsGroup';
 import UserProfile from '@/components/settings/UserProfile';
 import { getSettingsConfig } from '@/data/settingsData';
+import { getLocalUserSession, logoutUser, updateLocalUserSession } from '@/services/authService';
 import { supabase } from '@/services/supabaseClient';
 import { IonContent, IonIcon, IonPage } from '@ionic/react';
 import { logOutOutline } from 'ionicons/icons';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getLocalUserSession, logoutUser } from '@/services/authService';
 
 const Settings: React.FC = () => {
   const history = useHistory();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userProfile, setUserProfile] = useState<{ name: string; role: string }>(() => {
+  const [userProfile, setUserProfile] = useState<{ name: string; role: string; avatarUrl?: string }>(() => {
     const session = getLocalUserSession();
     return {
       name: session.name,
       role: session.role,
+      avatarUrl: session.avatarUrl,
     };
   });
 
@@ -29,8 +30,7 @@ const Settings: React.FC = () => {
           const { data: profile } = await supabase
             .from('profiles')
             .select(`
-              first_name,
-              last_name,
+              fullname,
               roles ( name )
             `)
             .eq('id', user.id)
@@ -38,10 +38,11 @@ const Settings: React.FC = () => {
 
           if (profile) {
             const roleName = (profile.roles as any)?.name || 'User';
-            setUserProfile({
-              name: `${profile.first_name || ''} ${profile.last_name || ''}`.trim() || 'Usuario',
+            setUserProfile((prev) => ({
+              ...prev,
+              name: profile.fullname || 'Usuario',
               role: roleName,
-            });
+            }));
           }
         }
       } catch (err) {
@@ -61,6 +62,11 @@ const Settings: React.FC = () => {
     console.log('Settings: Edit Profile Clicked');
   };
 
+  const handleAvatarChange = (newAvatarUrl: string) => {
+    setUserProfile((prev) => ({ ...prev, avatarUrl: newAvatarUrl }));
+    updateLocalUserSession({ avatarUrl: newAvatarUrl });
+  };
+
   const { accountItems, warehouseItems, adminItems, supportItems } = getSettingsConfig({
     onSecurity: () => console.log('Click: Seguridad'),
     onNotifications: () => console.log('Click: Notificaciones'),
@@ -76,7 +82,13 @@ const Settings: React.FC = () => {
       <IonContent scrollY={true}>
         <main className="px-container-padding pb-bottom-nav-safe flex flex-col gap-lg bg-surface">
           {/* User Profile Component */}
-          <UserProfile name={userProfile.name} role={userProfile.role} onEditClick={handleEditProfile} />
+          <UserProfile
+            name={userProfile.name}
+            role={userProfile.role}
+            avatarUrl={userProfile.avatarUrl}
+            onEditClick={handleEditProfile}
+            onAvatarChange={handleAvatarChange}
+          />
 
           {/* Settings Groups */}
           <section className="flex flex-col gap-lg">

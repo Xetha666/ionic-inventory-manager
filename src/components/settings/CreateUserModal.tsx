@@ -19,32 +19,10 @@ interface CreateUserModalProps {
 }
 
 const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) => {
-  const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    role,
-    setRole,
-    showPassword,
-    setShowPassword,
-    loading,
-    message,
-    handleCloseAttempt,
-    handleSubmit,
-  } = useCreateUser({ isOpen, onClose });
+  const {firstName,setFirstName,lastName,setLastName,email,setEmail,password,setPassword,role,setRole,showPassword,setShowPassword,loading,message,handleCloseAttempt,handleSubmit} = useCreateUser({ isOpen, onClose });
 
   return (
-    <IonModal
-      isOpen={isOpen}
-      onDidDismiss={onClose}
-      backdropDismiss={false}
-      className="create-user-modal"
-    >
+    <IonModal isOpen={isOpen} onDidDismiss={onClose} backdropDismiss={false} className="create-user-modal">
       <div className="flex flex-col h-full bg-surface-container-lowest overflow-y-auto">
         {/* Header */}
         <div className="flex items-center px-6 py-5 border-b border-outline-variant/10">
@@ -142,19 +120,10 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
 
           {/* Form Actions */}
           <div className="flex gap-sm mt-md">
-            <button
-              className="flex-1 h-12 border border-outline-variant/50 hover:bg-outline-variant/10 active:bg-outline-variant/20 rounded-2xl font-body-md font-semibold text-outline hover:text-on-surface transition-all cursor-pointer"
-              type="button"
-              onClick={handleCloseAttempt}
-              disabled={loading}
-            >
+            <button className="flex-1 h-12 border border-outline-variant/50 hover:bg-outline-variant/10 active:bg-outline-variant/20 rounded-2xl font-body-md font-semibold text-outline hover:text-on-surface transition-all cursor-pointer" type="button" onClick={handleCloseAttempt} disabled={loading}>
               Cancelar
             </button>
-            <button
-              className="flex-1 h-12 bg-primary hover:bg-primary-tint active:scale-98 text-white rounded-2xl font-body-md font-semibold transition-all shadow-button flex items-center justify-center gap-xs cursor-pointer"
-              type="submit"
-              disabled={loading}
-            >
+            <button className="flex-1 h-12 bg-primary hover:bg-primary-tint active:scale-98 text-white rounded-2xl font-body-md font-semibold transition-all shadow-button flex items-center justify-center gap-xs cursor-pointer" type="submit" disabled={loading}>
               {loading ? (
                 <Spinner size="md" color="border-white" />
               ) : (
