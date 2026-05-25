@@ -8,8 +8,8 @@ interface UseCreateUserProps {
 }
 
 export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<'Administrador' | 'User'>('User');
@@ -26,8 +26,8 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
       if (savedDraft) {
         try {
           const draft = JSON.parse(savedDraft);
-          setFirstName(draft.firstName || '');
-          setLastName(draft.lastName || '');
+          setFullName(draft.fullName || '');
+          setUsername(draft.username || '');
           setEmail(draft.email || '');
           setRole(draft.role || 'User');
         } catch (e) {
@@ -39,14 +39,14 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
 
   // Save draft if page is left and inputs exist
   useIonViewWillLeave(() => {
-    if (firstName || lastName || email || password) {
-      const draft = { firstName, lastName, email, role };
+    if (fullName || username || email || password) {
+      const draft = { fullName, username, email, role };
       localStorage.setItem('create_user_draft', JSON.stringify(draft));
     }
   });
 
   const handleCloseAttempt = () => {
-    const hasChanges = firstName || lastName || email || password;
+    const hasChanges = fullName || username || email || password;
     if (hasChanges) {
       presentAlert({
         header: 'Cambios no guardados',
@@ -55,7 +55,7 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
           {
             text: 'Guardar borrador',
             handler: () => {
-              const draft = { firstName, lastName, email, role };
+              const draft = { fullName, username, email, role };
               localStorage.setItem('create_user_draft', JSON.stringify(draft));
               onClose();
             },
@@ -64,8 +64,8 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
             text: 'Descartar cambios',
             role: 'destructive',
             handler: () => {
-              setFirstName('');
-              setLastName('');
+              setFullName('');
+              setUsername('');
               setEmail('');
               setPassword('');
               setRole('User');
@@ -86,7 +86,7 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!firstName || !lastName || !email || !password) {
+    if (!fullName || !username || !email || !password) {
       setMessage({ type: 'error', text: 'Por favor complete todos los campos.' });
       return;
     }
@@ -99,8 +99,8 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
       const { data, error } = await supabase.rpc('create_new_user', {
         new_email: email,
         new_password: password,
-        new_first_name: firstName,
-        new_last_name: lastName,
+        new_full_name: fullName,
+        new_username: username,
         new_role_name: role,
       });
 
@@ -112,12 +112,12 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
         await new Promise((resolve) => setTimeout(resolve, 1500));
         setMessage({
           type: 'success',
-          text: `Usuario ${firstName} ${lastName} creado exitosamente con rol ${role}.`,
+          text: `Usuario ${fullName} creado exitosamente con rol ${role}.`,
         });
         
         // Reset form
-        setFirstName('');
-        setLastName('');
+        setFullName('');
+        setUsername('');
         setEmail('');
         setPassword('');
         setRole('User');
@@ -126,12 +126,12 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
 
       setMessage({
         type: 'success',
-        text: `Usuario ${firstName} ${lastName} creado correctamente con ID: ${data?.user_id || 'S/N'}.`,
+        text: `Usuario ${fullName} creado correctamente con ID: ${data?.user_id || 'S/N'}.`,
       });
 
       // Reset form
-      setFirstName('');
-      setLastName('');
+      setFullName('');
+      setUsername('');
       setEmail('');
       setPassword('');
       setRole('User');
@@ -146,10 +146,10 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
   };
 
   return {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
+    fullName,
+    setFullName,
+    username,
+    setUsername,
     email,
     setEmail,
     password,
