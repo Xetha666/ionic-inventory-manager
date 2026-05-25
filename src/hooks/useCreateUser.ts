@@ -112,7 +112,7 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
         await new Promise((resolve) => setTimeout(resolve, 1500));
         setMessage({
           type: 'success',
-          text: `Usuario ${firstName} ${lastName} creado exitosamente con rol ${role} (Modo Mock).`,
+          text: `Usuario ${firstName} ${lastName} creado exitosamente con rol ${role}.`,
         });
         
         // Reset form
