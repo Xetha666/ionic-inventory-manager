@@ -4,7 +4,6 @@ import Spinner from '@/components/common/Spinner';
 import { supabase } from '@/services/supabaseClient';
 import { IonIcon, IonModal, useIonAlert, useIonViewWillLeave } from '@ionic/react';
 import {
-  closeOutline,
   eyeOffOutline,
   eyeOutline,
   mailOutline,
@@ -166,7 +165,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
     >
       <div className="flex flex-col h-full bg-surface-container-lowest overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-outline-variant/10">
+        <div className="flex items-center px-6 py-5 border-b border-outline-variant/10">
           <div className="flex items-center gap-sm">
             <div className="flex size-10 rounded-xl bg-primary/10 items-center justify-center text-primary">
               <IonIcon icon={personAddOutline} className="text-xl" />
@@ -175,15 +174,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
               Crear Nuevo Usuario
             </h2>
           </div>
-          <button
-            aria-label="Cerrar modal"
-            className="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:bg-outline-variant/10 hover:text-on-surface transition-colors cursor-pointer"
-            type="button"
-            onClick={handleCloseAttempt}
-            disabled={loading}
-          >
-            <IonIcon icon={closeOutline} className="text-2xl" />
-          </button>
         </div>
 
         {/* Form Body */}
