@@ -1,10 +1,10 @@
 import { setLocalUserSession } from '@/services/authService';
 import { supabase } from '@/services/supabaseClient';
-import Spinner from '../common/Spinner';
 import { IonIcon, useIonViewWillLeave } from '@ionic/react';
 import { arrowForwardOutline, eyeOffOutline, eyeOutline, lockClosedOutline, personOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Spinner from '../common/Spinner';
 
 interface LoginFormProps {
   onLogin?: (username: string, password: string) => void;
@@ -122,54 +122,22 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       )}
 
       <div className="flex flex-col gap-sm sm:gap-stack-gap">
-        {/* Username / Email Input */}
+        {/* Username */}
         <div className="flex flex-col gap-xs">
-          <label 
-            className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider ml-xs" 
-            htmlFor="username"
-          >
-            Nombre de Usuario o Correo
-          </label>
+          <label className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider ml-xs" htmlFor="username">Usuario</label>
           <div className="relative">
-            <IonIcon 
-              icon={personOutline} 
-              className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-xl" 
-            />
-            <input 
-              className="w-full h-12 pl-11 pr-md rounded-card-lg border border-outline/20 bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm" 
-              id="username" 
-              placeholder="Ej. juanperez o correo@ejemplo.com" 
-              type="text"
-              required
-              disabled={loading}
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+            <IonIcon icon={personOutline} className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-xl" />
+            <input className="w-full h-12 pl-11 pr-md rounded-card-lg border border-outline/20 bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm" id="username" placeholder="Ingrese su usuario" type="text" required disabled={loading} value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
         </div>
 
         {/* Password Input */}
         <div className="flex flex-col gap-xs">
           <div className="flex justify-between items-center ml-xs mr-xs">
-            <label 
-              className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider" 
-              htmlFor="password"
-            >
-              Contraseña
-            </label>
-            <a 
-              className="font-label-caps text-label-caps text-primary transition-colors" 
-              href="#"
-              onClick={(e) => e.preventDefault()}
-            >
-              Olvidé mi contraseña
-            </a>
+            <label className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider" htmlFor="password">Contraseña</label>            
           </div>
           <div className="relative">
-            <IonIcon 
-              icon={lockClosedOutline} 
-              className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-xl" 
-            />
+            <IonIcon icon={lockClosedOutline} className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-xl" />
             <input 
               className="w-full h-12 pl-11 pr-md rounded-card-lg border border-outline/20 bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm" 
               id="password" 
