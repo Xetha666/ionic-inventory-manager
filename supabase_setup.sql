@@ -138,3 +138,25 @@ $$;
 
 -- Grant execution permissions to authenticated users and anon users (if client uses it)
 GRANT EXECUTE ON FUNCTION public.create_new_user(TEXT, TEXT, TEXT, TEXT, TEXT) TO anon, authenticated, service_role;
+
+-- 7. Helper function to resolve username to email (with SECURITY DEFINER to bypass normal restrictions on auth.users)
+CREATE OR REPLACE FUNCTION public.get_user_email(username_input TEXT)
+RETURNS TEXT
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, auth
+AS $$
+DECLARE
+  user_email TEXT;
+BEGIN
+  SELECT u.email INTO user_email
+  FROM auth.users u
+  JOIN public.profiles p ON u.id = p.id
+  WHERE p.username = username_input;
+  
+  RETURN user_email;
+END;
+$$;
+
+GRANT EXECUTE ON FUNCTION public.get_user_email(TEXT) TO anon, authenticated, service_role;
+
