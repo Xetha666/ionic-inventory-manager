@@ -1,6 +1,6 @@
 import { supabase } from '@/services/supabaseClient';
 import { useIonAlert, useIonViewWillLeave } from '@ionic/react';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface UseCreateUserProps {
   isOpen: boolean;
@@ -96,7 +96,7 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
 
     try {
       // Attempt to invoke the RPC function to create the user securely from admin client
-      const { data, error } = await supabase.rpc('create_new_user_admin', {
+      const { data, error } = await supabase.rpc('create_new_user', {
         new_email: email,
         new_password: password,
         new_first_name: firstName,
@@ -106,7 +106,7 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
 
       if (error) {
         // Fallback for development if the RPC is not installed in the Supabase instance yet
-        console.warn('RPC create_new_user_admin not found or failed, using mock client creation:', error.message);
+        console.warn('RPC create_new_user not found or failed, using mock client creation:', error.message);
         
         // Simulating mock creation
         await new Promise((resolve) => setTimeout(resolve, 1500));
