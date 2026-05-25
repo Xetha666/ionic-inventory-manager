@@ -9,14 +9,10 @@ interface UserProfileProps {
   role?: string;
   avatarUrl?: string;
   onAvatarChange?: (newAvatarUrl: string) => void;
+  onEditClick?: () => void;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({
-  name,
-  role,
-  avatarUrl,
-  onAvatarChange,
-}) => {
+const UserProfile: React.FC<UserProfileProps> = ({name,role,avatarUrl,onAvatarChange,onEditClick,}) => {
   const {fileInputRef,imageSrc,
     crop,setCrop,
     zoom,setZoom,
@@ -60,12 +56,20 @@ const UserProfile: React.FC<UserProfileProps> = ({
         </div>
       </div>
 
-      <h2 className="text-xl font-bold font-h2 text-on-background mt-3">{name}</h2>
+      <div
+        className="flex items-center gap-xs mt-3 cursor-pointer group"
+        onClick={onEditClick}
+      >
+        <h2 className="text-xl font-bold font-h2 text-on-background group-hover:text-primary transition-colors">
+          {name}
+        </h2>
+        <IonIcon icon={pencil} className="text-sm text-outline group-hover:text-primary transition-colors" />
+      </div>
       <p className="text-sm text-outline-variant font-medium mt-1">{role}</p>
 
       {/* Manual Cropping Modal */}
       {imageSrc && (
-        <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/85 p-4 animate-fade-in">
+        <div className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-black/85 p-4 animate-fade-in">
           <div
             className="relative bg-surface-container-lowest rounded-login p-6 flex flex-col gap-md shadow-login"
             style={{ width: '100%', maxWidth: '400px' }}
