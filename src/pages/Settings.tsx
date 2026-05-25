@@ -58,10 +58,6 @@ const Settings: React.FC = () => {
     history.replace('/login');
   };
 
-  const handleEditProfile = () => {
-    console.log('Settings: Edit Profile Clicked');
-  };
-
   const handleAvatarChange = (newAvatarUrl: string) => {
     setUserProfile((prev) => ({ ...prev, avatarUrl: newAvatarUrl }));
     updateLocalUserSession({ avatarUrl: newAvatarUrl });
@@ -86,7 +82,6 @@ const Settings: React.FC = () => {
             name={userProfile.name}
             role={userProfile.role}
             avatarUrl={userProfile.avatarUrl}
-            onEditClick={handleEditProfile}
             onAvatarChange={handleAvatarChange}
           />
 
