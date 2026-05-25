@@ -7,7 +7,7 @@ export interface UserSession {
   avatarUrl?: string;
 }
 
-export const getLocalUserSession = (): UserSession => {
+export const getLocalUserSession = (): UserSession | null => {
   const sessionStr = localStorage.getItem('user_session');
   if (sessionStr) {
     try {
@@ -16,13 +16,7 @@ export const getLocalUserSession = (): UserSession => {
       console.error('Error parsing user session:', e);
     }
   }
-  // Default fallback
-  return {
-    name: 'Alejandro Moreno',
-    email: 'admin@inventoryflow.com',
-    role: 'Administrador',
-    avatarUrl: '/avatar.png',
-  };
+  return null;
 };
 
 export const setLocalUserSession = (session: UserSession) => {
@@ -30,6 +24,14 @@ export const setLocalUserSession = (session: UserSession) => {
   // Generate and save a mock JWT token representing the session
   const mockToken = `mock_jwt_token_${btoa(JSON.stringify(session))}_${Date.now()}`;
   localStorage.setItem('auth_token', mockToken);
+};
+
+export const updateLocalUserSession = (updates: Partial<UserSession>) => {
+  const current = getLocalUserSession();
+  if (current) {
+    const updated = { ...current, ...updates };
+    localStorage.setItem('user_session', JSON.stringify(updated));
+  }
 };
 
 export const clearLocalUserSession = () => {

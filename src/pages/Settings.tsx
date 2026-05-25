@@ -16,9 +16,9 @@ const Settings: React.FC = () => {
   const [userProfile, setUserProfile] = useState<{ name: string; role: string; avatarUrl?: string }>(() => {
     const session = getLocalUserSession();
     return {
-      name: session.name,
-      role: session.role,
-      avatarUrl: session.avatarUrl,
+      name: session?.name || 'Usuario',
+      role: session?.role || 'User',
+      avatarUrl: session?.avatarUrl || '/avatar.png',
     };
   });
 
