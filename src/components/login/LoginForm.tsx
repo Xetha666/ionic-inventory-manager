@@ -1,5 +1,5 @@
 import { setLocalUserSession } from '@/services/authService';
-import { IonIcon } from '@ionic/react';
+import { IonIcon, useIonViewWillLeave } from '@ionic/react';
 import { arrowForwardOutline, eyeOffOutline, eyeOutline, lockClosedOutline, mailOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -13,6 +13,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
+
+  useIonViewWillLeave(() => {
+    // Clear credentials for security when leaving the login page
+    setEmail('');
+    setPassword('');
+  });
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);

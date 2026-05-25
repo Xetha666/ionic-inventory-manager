@@ -2,7 +2,7 @@ import FormInput from '@/components/common/FormInput';
 import FormSelect from '@/components/common/FormSelect';
 import Spinner from '@/components/common/Spinner';
 import { supabase } from '@/services/supabaseClient';
-import { IonIcon, IonModal } from '@ionic/react';
+import { IonIcon, IonModal, useIonAlert, useIonViewWillLeave } from '@ionic/react';
 import {
   closeOutline,
   eyeOffOutline,
@@ -12,7 +12,7 @@ import {
   personOutline,
   shieldCheckmarkOutline,
 } from 'ionicons/icons';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface CreateUserModalProps {
   isOpen: boolean;
@@ -28,6 +28,73 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  const [presentAlert] = useIonAlert();
+
+  // Load draft from localStorage on open
+  useEffect(() => {
+    if (isOpen) {
+      const savedDraft = localStorage.getItem('create_user_draft');
+      if (savedDraft) {
+        try {
+          const draft = JSON.parse(savedDraft);
+          setFirstName(draft.firstName || '');
+          setLastName(draft.lastName || '');
+          setEmail(draft.email || '');
+          setRole(draft.role || 'User');
+        } catch (e) {
+          console.warn('Failed to parse draft from localStorage:', e);
+        }
+      }
+    }
+  }, [isOpen]);
+
+  // Save draft if page is left and inputs exist
+  useIonViewWillLeave(() => {
+    if (firstName || lastName || email || password) {
+      const draft = { firstName, lastName, email, role };
+      localStorage.setItem('create_user_draft', JSON.stringify(draft));
+    }
+  });
+
+  const handleCloseAttempt = () => {
+    const hasChanges = firstName || lastName || email || password;
+    if (hasChanges) {
+      presentAlert({
+        header: 'Cambios no guardados',
+        message: 'Tienes cambios en el formulario. ¿Qué deseas hacer con ellos?',
+        buttons: [
+          {
+            text: 'Guardar borrador',
+            handler: () => {
+              const draft = { firstName, lastName, email, role };
+              localStorage.setItem('create_user_draft', JSON.stringify(draft));
+              onClose();
+            },
+          },
+          {
+            text: 'Descartar cambios',
+            role: 'destructive',
+            handler: () => {
+              setFirstName('');
+              setLastName('');
+              setEmail('');
+              setPassword('');
+              setRole('User');
+              localStorage.removeItem('create_user_draft');
+              onClose();
+            },
+          },
+          {
+            text: 'Seguir editando',
+            role: 'cancel',
+          },
+        ],
+      });
+    } else {
+      onClose();
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,6 +161,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
     <IonModal
       isOpen={isOpen}
       onDidDismiss={onClose}
+      backdropDismiss={false}
       className="create-user-modal"
     >
       <div className="flex flex-col h-full bg-surface-container-lowest overflow-y-auto">
@@ -111,7 +179,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
             aria-label="Cerrar modal"
             className="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:bg-outline-variant/10 hover:text-on-surface transition-colors cursor-pointer"
             type="button"
-            onClick={onClose}
+            onClick={handleCloseAttempt}
             disabled={loading}
           >
             <IonIcon icon={closeOutline} className="text-2xl" />
@@ -205,7 +273,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
             <button
               className="flex-1 h-12 border border-outline-variant/50 hover:bg-outline-variant/10 active:bg-outline-variant/20 rounded-2xl font-body-md font-semibold text-outline hover:text-on-surface transition-all cursor-pointer"
               type="button"
-              onClick={onClose}
+              onClick={handleCloseAttempt}
               disabled={loading}
             >
               Cancelar
