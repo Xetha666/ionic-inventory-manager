@@ -1,22 +1,22 @@
 import { setLocalUserSession } from '@/services/authService';
 import { IonIcon, useIonViewWillLeave } from '@ionic/react';
-import { arrowForwardOutline, eyeOffOutline, eyeOutline, lockClosedOutline, mailOutline } from 'ionicons/icons';
+import { arrowForwardOutline, eyeOffOutline, eyeOutline, lockClosedOutline, personOutline } from 'ionicons/icons';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 interface LoginFormProps {
-  onLogin?: (email: string, password: string) => void;
+  onLogin?: (emailOrUsername: string, password: string) => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
 
   useIonViewWillLeave(() => {
     // Clear credentials for security when leaving the login page
-    setEmail('');
+    setUsername('');
     setPassword('');
   });
 
@@ -27,8 +27,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Map test users based on email
-    if (email.trim().toLowerCase() === 'maria@ejemplo.com') {
+    const normalizedInput = username.trim().toLowerCase();
+    let resolvedEmail = normalizedInput;
+
+    // Fallback/Resolve username to email mapping for testing and local flow
+    if (normalizedInput === 'maria' || normalizedInput === 'maria@ejemplo.com') {
+      resolvedEmail = 'maria@ejemplo.com';
       setLocalUserSession({
         name: 'María López',
         email: 'maria@ejemplo.com',
@@ -36,19 +40,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         avatarUrl: '/avatar.png',
       });
     } else {
-      // Default to Juan Pérez (Administrador) for any other email (or juan@ejemplo.com)
+      // Default to Juan Pérez (Administrador) for any other input (e.g. juan or juan@ejemplo.com)
+      resolvedEmail = normalizedInput.includes('@') ? normalizedInput : `${normalizedInput}@ejemplo.com`;
       setLocalUserSession({
         name: 'Juan Pérez',
-        email: email.trim() || 'juan@ejemplo.com',
+        email: resolvedEmail,
         role: 'Administrador',
         avatarUrl: '/avatar.png',
       });
     }
 
     if (onLogin) {
-      onLogin(email, password);
+      onLogin(resolvedEmail, password);
     } else {
-      console.log('Logging in with:', { email, password });
+      console.log('Logging in with username/email:', resolvedEmail);
       history.push('/home');
     }
   };
@@ -56,27 +61,27 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   return (
     <form className="flex flex-col gap-md sm:gap-lg relative z-10" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-sm sm:gap-stack-gap">
-        {/* Email Input */}
+        {/* Username Input */}
         <div className="flex flex-col gap-xs">
           <label 
             className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider ml-xs" 
-            htmlFor="email"
+            htmlFor="username"
           >
-            Correo Electrónico
+            Nombre de Usuario
           </label>
           <div className="relative">
             <IonIcon 
-              icon={mailOutline} 
+              icon={personOutline} 
               className="absolute left-md top-1/2 -translate-y-1/2 text-outline text-xl" 
             />
             <input 
               className="w-full h-12 pl-11 pr-md rounded-card-lg border border-outline/20 bg-surface-container-lowest font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-sm" 
-              id="email" 
-              placeholder="gerente@almacen.com" 
-              type="email"
+              id="username" 
+              placeholder="juanperez" 
+              type="text"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
         </div>
@@ -138,11 +143,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         <span className="font-bold uppercase tracking-wider text-on-surface-variant mb-1">Usuarios de prueba:</span>
         <div className="flex justify-between items-center">
           <span>🔑 Administrador:</span>
-          <span className="font-semibold text-primary">juan@ejemplo.com</span>
+          <span className="font-semibold text-primary">juan</span>
         </div>
         <div className="flex justify-between items-center">
           <span>🔑 Usuario Común:</span>
-          <span className="font-semibold text-primary">maria@ejemplo.com</span>
+          <span className="font-semibold text-primary">maria</span>
         </div>
         <span className="text-[10px] text-outline-variant mt-1.5 text-center">(Contraseña: cualquiera)</span>
       </div>
