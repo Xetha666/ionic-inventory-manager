@@ -22,6 +22,7 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
   // Load draft from localStorage on open
   useEffect(() => {
     if (isOpen) {
+      setMessage(null);
       const savedDraft = localStorage.getItem('create_user_draft');
       if (savedDraft) {
         try {
@@ -110,7 +111,7 @@ export const useCreateUser = ({ isOpen, onClose }: UseCreateUserProps) => {
 
       setMessage({
         type: 'success',
-        text: `Usuario ${fullName} creado correctamente con ID: ${data?.user_id || 'S/N'}.`,
+        text: `Usuario ${fullName} creado correctamente.`,
       });
 
       // Reset form
