@@ -19,7 +19,24 @@ interface CreateUserModalProps {
 }
 
 const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) => {
-  const {firstName,setFirstName,lastName,setLastName,email,setEmail,password,setPassword,role,setRole,showPassword,setShowPassword,loading,message,handleCloseAttempt,handleSubmit} = useCreateUser({ isOpen, onClose });
+  const {
+    fullName,
+    setFullName,
+    username,
+    setUsername,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    role,
+    setRole,
+    showPassword,
+    setShowPassword,
+    loading,
+    message,
+    handleCloseAttempt,
+    handleSubmit,
+  } = useCreateUser({ isOpen, onClose });
 
   return (
     <IonModal isOpen={isOpen} onDidDismiss={onClose} backdropDismiss={false} className="create-user-modal">
@@ -50,28 +67,27 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ isOpen, onClose }) =>
             </div>
           )}
 
-          {/* First Name & Last Name */}
-          <div className="grid grid-cols-2 gap-sm">
-            <FormInput
-              label="Nombre"
-              icon={personOutline}
-              placeholder="Ej. Juan"
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              disabled={loading}
-            />
+          {/* Full Name */}
+          <FormInput
+            label="Nombre Completo"
+            icon={personOutline}
+            placeholder="Ej. Juan Pérez"
+            type="text"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            disabled={loading}
+          />
 
-            <FormInput
-              label="Apellido"
-              icon={personOutline}
-              placeholder="Ej. Pérez"
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              disabled={loading}
-            />
-          </div>
+          {/* Username */}
+          <FormInput
+            label="Nombre de Usuario"
+            icon={personOutline}
+            placeholder="juanperez"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            disabled={loading}
+          />
 
           {/* Email */}
           <FormInput
