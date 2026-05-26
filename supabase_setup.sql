@@ -98,7 +98,14 @@ BEGIN
     raw_user_meta_data,
     is_super_admin,
     created_at,
-    updated_at
+    updated_at,
+    confirmation_token,
+    email_change,
+    email_change_token_new,
+    recovery_token,
+    phone_change_token,
+    email_change_token_current,
+    reauthentication_token
   )
   VALUES (
     '00000000-0000-0000-0000-000000000000',
@@ -112,7 +119,14 @@ BEGIN
     json_build_object('full_name', new_full_name, 'username', new_username),
     false,
     now(),
-    now()
+    now(),
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
   )
   RETURNING id INTO new_user_id;
 
