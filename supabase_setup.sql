@@ -116,6 +116,28 @@ BEGIN
   )
   RETURNING id INTO new_user_id;
 
+  -- 4b. Insert into auth.identities to link the auth provider (required by GoTrue / Supabase Auth)
+  INSERT INTO auth.identities (
+    id,
+    user_id,
+    identity_data,
+    provider,
+    provider_id,
+    last_sign_in_at,
+    created_at,
+    updated_at
+  )
+  VALUES (
+    new_user_id::text,
+    new_user_id,
+    json_build_object('sub', new_user_id, 'email', new_email, 'email_verified', true, 'phone_verified', false)::jsonb,
+    'email',
+    new_user_id::text,
+    now(),
+    now(),
+    now()
+  );
+
   -- 5. Upsert into public.profiles
   -- Using ON CONFLICT to handle cases where an automatic trigger (on_auth_user_created)
   -- might have already inserted the profile row.
