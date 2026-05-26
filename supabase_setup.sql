@@ -128,7 +128,7 @@ BEGIN
     updated_at
   )
   VALUES (
-    new_user_id::text,
+    new_user_id,
     new_user_id,
     json_build_object('sub', new_user_id, 'email', new_email, 'email_verified', true, 'phone_verified', false)::jsonb,
     'email',
