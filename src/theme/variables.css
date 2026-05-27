@@ -128,7 +128,7 @@
   --shadow-login: 0 12px 32px rgba(30, 41, 59, 0.08);
   --shadow-nav: 0 -4px 12px rgba(30, 41, 59, 0.05);
 
-  --width-login-card: 400px;
+  --max-width-login-card: 480px;
 }
 
 body {
