@@ -2,75 +2,13 @@ import BottomNavBar from '@/components/navigation/BottomNavBar';
 import CreateUserModal from '@/components/settings/CreateUserModal';
 import SettingsGroup from '@/components/settings/SettingsGroup';
 import UserProfile from '@/components/settings/UserProfile';
-import { getSettingsConfig } from '@/data/settingsData';
-import { getLocalUserSession, logoutUser, updateLocalUserSession } from '@/services/authService';
-import { supabase } from '@/services/supabaseClient';
+import { useSettings } from '@/hooks/useSettings';
 import { IonContent, IonIcon, IonPage } from '@ionic/react';
 import { logOutOutline } from 'ionicons/icons';
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 
 const Settings: React.FC = () => {
-  const history = useHistory();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [userProfile, setUserProfile] = useState<{ name: string; role: string; avatarUrl?: string }>(() => {
-    const session = getLocalUserSession();
-    return {
-      name: session?.name || 'Usuario',
-      role: session?.role || 'User',
-      avatarUrl: session?.avatarUrl || '/avatar.png',
-    };
-  });
-
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          const { data: profile } = await supabase
-            .from('profiles')
-            .select(`
-              full_name,
-              roles ( name )
-            `)
-            .eq('id', user.id)
-            .single();
-
-          if (profile) {
-            const roleName = (profile.roles as any)?.name || 'User';
-            setUserProfile((prev) => ({
-              ...prev,
-              name: (profile as any).full_name || 'Usuario',
-              role: roleName,
-            }));
-          }
-        }
-      } catch (err) {
-        console.warn('Error fetching user profile from Supabase:', err);
-      }
-    };
-
-    fetchUserProfile();
-  }, []);
-
-  const handleLogout = async () => {
-    await logoutUser();
-    history.replace('/login');
-  };
-
-  const handleAvatarChange = (newAvatarUrl: string) => {
-    setUserProfile((prev) => ({ ...prev, avatarUrl: newAvatarUrl }));
-    updateLocalUserSession({ avatarUrl: newAvatarUrl });
-  };
-
-  const { accountItems, warehouseItems, adminItems, supportItems } = getSettingsConfig({
-    onSecurity: () => console.log('Click: Seguridad'),
-    onNotifications: () => console.log('Click: Notificaciones'),
-    onLocation: () => console.log('Click: Ubicación'),
-    onPreferences: () => console.log('Click: Preferencias'),
-    onUserManagement: () => setIsModalOpen(true),
-    onHelp: () => console.log('Click: Centro de Ayuda'),
-  });
+  const {userProfile,isModalOpen,setIsModalOpen,handleLogout,handleAvatarChange,accountItems,warehouseItems,adminItems,supportItems} = useSettings();
 
   return (
     <IonPage>

@@ -34,8 +34,8 @@ export const getCroppedImg = (
         pixelCrop.height
       );
 
-      // Convert to Base64 data URL (PNG format preserves alpha transparency channel)
-      const base64Image = canvas.toDataURL('image/png');
+      // Convert to Base64 data URL (WebP format for optimized compression)
+      const base64Image = canvas.toDataURL('image/webp', 0.85);
       resolve(base64Image);
     };
     image.onerror = (error) => reject(error);
