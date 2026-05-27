@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import { getLocalUserSession, UserSession } from '@/services/authService';
+import React, { useEffect, useState } from 'react';
 
 const DashboardHeader: React.FC = () => {
   const [session, setSession] = useState<UserSession | null>(null);

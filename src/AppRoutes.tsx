@@ -1,11 +1,11 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { IonRouterOutlet } from '@ionic/react';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
 import Settings from '@/pages/Settings';
-import { isAuthenticated } from '@/services/authService';
 import { useAuthMiddleware } from '@/services/authMiddleware';
+import { isAuthenticated } from '@/services/authService';
+import { IonRouterOutlet } from '@ionic/react';
+import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
 
 const AppRoutes: React.FC = () => {
   // Run the auth state middleware monitor
