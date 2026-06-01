@@ -10,18 +10,13 @@ import React from 'react';
 const Home: React.FC = () => {
   return (
     <IonPage>
-      {/* Main Canvas */}
       <IonContent scrollY={true}>
         <main className="px-container-padding pt-lg pb-bottom-nav-safe flex flex-col gap-lg">
-          {/* Header Section */}
           <DashboardHeader />
 
-          {/* Bento Grid Metrics */}
           <section className="flex flex-col gap-sm">
-            {/* Main Valorization Card */}
             <ValorizationCard />
 
-            {/* Split Metric Cards */}
             <div className="grid grid-cols-2 gap-sm">
               <MetricCard
                 icon={cubeOutline}
@@ -37,12 +32,10 @@ const Home: React.FC = () => {
             </div>
           </section>
 
-          {/* Chart Section */}
           <WeeklyMovementChart />
         </main>
       </IonContent>
 
-      {/* Bottom Navigation Bar */}
       <BottomNavBar activePath="/home" />
     </IonPage>
   );

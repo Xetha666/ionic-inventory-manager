@@ -7,12 +7,10 @@ import React from 'react';
 const Login: React.FC = () => {
   const handleFingerprintClick = () => {
     console.log('Biometric Login: Fingerprint');
-    // Implement fingerprint biometric action
   };
 
   const handleFaceIdClick = () => {
     console.log('Biometric Login: Face ID');
-    // Implement Face ID biometric action
   };
 
   return (
@@ -23,13 +21,10 @@ const Login: React.FC = () => {
             {/* Subtle Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 bg-primary-fixed/20 blur-3xl rounded-full pointer-events-none"></div>
 
-            {/* Header Component */}
             <LoginHeader />
 
-            {/* Form Component */}
             <LoginForm />
 
-            {/* Biometric Authentication Component */}
             <BiometricAuth 
               onFingerprintClick={handleFingerprintClick}
               onFaceIdClick={handleFaceIdClick}
