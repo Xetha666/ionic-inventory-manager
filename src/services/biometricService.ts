@@ -136,15 +136,15 @@ export const loginWithBiometric = async (): Promise<UserSession> => {
         'No hay credenciales biométricas guardadas en este navegador.\n\n¿Deseas saltar la validación e ingresar credenciales manualmente para guardarlas y activar la biometría en la base de datos?'
       );
       if (bypass) {
-        const email = window.prompt('Ingresa tu correo o usuario:');
-        if (!email) throw new Error('Usuario/correo cancelado.');
+        const username = window.prompt('Ingresa tu usuario:');
+        if (!username) throw new Error('Usuario cancelado.');
         const password = window.prompt('Ingresa tu contraseña:');
         if (!password) throw new Error('Contraseña cancelada.');
 
-        const session = await loginWithCredentials(email, password);
+        const session = await loginWithCredentials(username, password);
         if (session.id) {
           const token = crypto.randomUUID();
-          await saveCredentials({ email, password, token });
+          await saveCredentials({ email: session.email, password, token });
           
           await supabase
             .from('profiles')
