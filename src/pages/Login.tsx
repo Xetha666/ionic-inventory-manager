@@ -1,16 +1,28 @@
 import BiometricAuth from '@/components/login/BiometricAuth';
 import LoginForm from '@/components/login/LoginForm';
 import LoginHeader from '@/components/login/LoginHeader';
+import { loginWithBiometric } from '@/services/biometricService';
 import { IonContent, IonPage } from '@ionic/react';
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Login: React.FC = () => {
-  const handleFingerprintClick = () => {
-    console.log('Biometric Login: Fingerprint');
-  };
+  const history = useHistory();
+  const [biometricLoading, setBiometricLoading] = useState(false);
+  const [biometricError, setBiometricError] = useState<string | null>(null);
 
-  const handleFaceIdClick = () => {
-    console.log('Biometric Login: Face ID');
+  const handleBiometricLogin = async () => {
+    setBiometricLoading(true);
+    setBiometricError(null);
+    try {
+      await loginWithBiometric();
+      history.push('/home');
+    } catch (err: any) {
+      console.error('Biometric login error:', err.message);
+      setBiometricError(err.message || 'Error al autenticar.');
+    } finally {
+      setBiometricLoading(false);
+    }
   };
 
   return (
@@ -26,8 +38,10 @@ const Login: React.FC = () => {
             <LoginForm />
 
             <BiometricAuth 
-              onFingerprintClick={handleFingerprintClick}
-              onFaceIdClick={handleFaceIdClick}
+              onFingerprintClick={handleBiometricLogin}
+              onFaceIdClick={handleBiometricLogin}
+              loading={biometricLoading}
+              error={biometricError}
             />
           </main>
         </div>
