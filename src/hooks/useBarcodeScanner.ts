@@ -37,10 +37,10 @@ export const useBarcodeScanner = ({
     if (!isCameraReady || isPaused) return;
 
     let active = true;
-    let detector: BarcodeDetector | null = null;
+    let detector: any = null;
 
     const initDetectorAndScan = async () => {
-      let DetectorClass = window.BarcodeDetector;
+      let DetectorClass = (window as any).BarcodeDetector;
       let isNativeWorking = false;
 
       // Chrome on Windows exposes BarcodeDetector, but getSupportedFormats() is empty.
