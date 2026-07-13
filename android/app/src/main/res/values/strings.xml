@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ionic Inventory Manager</string>
+    <string name="title_activity_main">Ionic Inventory Manager</string>
+    <string name="package_name">com.xetha.inventorymanager</string>
+    <string name="custom_url_scheme">com.xetha.inventorymanager</string>
+</resources>
