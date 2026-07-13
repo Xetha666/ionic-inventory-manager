@@ -1,6 +1,7 @@
+import { pushNotificationService } from '@/services/pushNotificationService';
 import { IonApp, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppRoutes from './AppRoutes';
 
 /* Core CSS required for Ionic components to work properly */
@@ -35,12 +36,18 @@ import '@/theme/variables.css';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <AppRoutes />
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  useEffect(() => {
+    pushNotificationService.register();
+  }, []);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <AppRoutes />
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;

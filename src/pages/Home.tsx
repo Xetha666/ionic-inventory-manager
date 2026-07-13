@@ -3,11 +3,34 @@ import MetricCard from '@/components/dashboard/MetricCard';
 import ValorizationCard from '@/components/dashboard/ValorizationCard';
 import WeeklyMovementChart from '@/components/dashboard/WeeklyMovementChart';
 import BottomNavBar from '@/components/navigation/BottomNavBar';
+import { Product } from '@/data/productsData';
+import { productService } from '@/services/productService';
+import { calculateDashboardMetrics } from '@/utils/dashboardUtils';
 import { IonContent, IonPage } from '@ionic/react';
 import { cubeOutline, warningOutline } from 'ionicons/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const data = await productService.fetchProducts();
+        setProducts(data);
+      } catch (err) {
+        console.error('Error al cargar productos en Home:', err);
+        throw new Error('Error al cargar productos');
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, []);
+
+  const { totalStockUnits, stockAlerts, valuation } = calculateDashboardMetrics(products);
+
   return (
     <IonPage>
       <IonContent scrollY={true}>
@@ -15,19 +38,24 @@ const Home: React.FC = () => {
           <DashboardHeader />
 
           <section className="flex flex-col gap-sm">
-            <ValorizationCard />
+            <ValorizationCard
+              value={valuation}
+              loading={loading}
+            />
 
             <div className="grid grid-cols-2 gap-sm">
               <MetricCard
                 icon={cubeOutline}
-                value="8,402"
-                label="Productos totales"
+                value={totalStockUnits}
+                label="Productos en stock"
+                loading={loading}
               />
               <MetricCard
                 icon={warningOutline}
-                value="24"
+                value={stockAlerts}
                 label="Alertas de stock"
                 variant="error"
+                loading={loading}
               />
             </div>
           </section>

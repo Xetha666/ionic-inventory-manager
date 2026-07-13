@@ -1,5 +1,7 @@
 import Home from '@/pages/Home';
+import Inventory from '@/pages/Inventory';
 import Login from '@/pages/Login';
+import Scanner from '@/pages/Scanner';
 import Settings from '@/pages/Settings';
 import { useAuthMiddleware } from '@/services/authMiddleware';
 import { isAuthenticated } from '@/services/authService';
@@ -22,9 +24,18 @@ const AppRoutes: React.FC = () => {
         isAuthenticated() ? <Home /> : <Redirect to="/login" />
       )} />
 
+      <Route exact path="/inventory" render={() => (
+        isAuthenticated() ? <Inventory /> : <Redirect to="/login" />
+      )} />
+
+      <Route exact path="/scanner" render={() => (
+        isAuthenticated() ? <Scanner /> : <Redirect to="/login" />
+      )} />
+
       <Route exact path="/settings" render={() => (
         isAuthenticated() ? <Settings /> : <Redirect to="/login" />
       )} />
+
 
       {/* Redirect empty path to login */}
       <Route exact path="/">
