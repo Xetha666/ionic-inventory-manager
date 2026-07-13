@@ -33,3 +33,14 @@ yarn-error.log*
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Firebase config (only commit template)
+/android/app/google-services.json
+
+# Supabase
+supabase/.temp/
+
+# AI Agents / Tools
+.agents/
+skills-lock.json
+
