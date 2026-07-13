@@ -1,5 +1,6 @@
 import { loginWithCredentials } from '@/services/authService';
 import { enrollBiometric } from '@/services/biometricService';
+import { pushNotificationService } from '@/services/pushNotificationService';
 import { useIonViewWillLeave } from '@ionic/react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -35,8 +36,8 @@ export const useLoginForm = () => {
     if (confirmed && pendingSession) {
       try {
         await enrollBiometric(pendingSession.userId, pendingSession.email, pendingSession.password);
-      } catch (err: any) {
-        console.warn('Biometric enrollment skipped:', err.message);
+      } catch (err) {
+        console.warn('Biometric enrollment skipped:', (err as Error).message);
       }
     }
     navigateHome();
@@ -49,6 +50,15 @@ export const useLoginForm = () => {
 
     try {
       const session = await loginWithCredentials(username, password);
+
+      // Vincular el token FCM del dispositivo con el usuario
+      if (session.id) {
+        try {
+          await pushNotificationService.associateTokenWithUser();
+        } catch (pushErr) {
+          console.warn('Error al vincular el token FCM con el usuario:', pushErr);
+        }
+      }
 
       // If the user hasn't enabled biometrics yet, offer enrollment
       if (!session.id) {
@@ -64,7 +74,7 @@ export const useLoginForm = () => {
           .single()
       );
 
-      const biometricsEnabled = (profile as any)?.biometrics_enabled ?? false;
+      const biometricsEnabled = (profile as { biometrics_enabled: boolean })?.biometrics_enabled ?? false;
 
       if (!biometricsEnabled) {
         // Store pending data and show the enrollment prompt before navigating
@@ -73,8 +83,8 @@ export const useLoginForm = () => {
       } else {
         navigateHome();
       }
-    } catch (error: any) {
-      console.error('Login error:', error.message);
+    } catch (error) {
+      console.error('Login error:', (error as Error).message);
       setError('Credenciales de inicio de sesión incorrectas.');
     } finally {
       setLoading(false);

@@ -48,6 +48,13 @@ export const isAuthenticated = (): boolean => {
  * Perform a logout operation clearing both Supabase and LocalStorage session
  */
 export const logoutUser = async () => {
+  try {
+    const { pushNotificationService } = await import('./pushNotificationService');
+    await pushNotificationService.disassociateToken();
+  } catch (pushErr) {
+    console.warn('No se pudo desvincular el token FCM al cerrar sesión:', pushErr);
+  }
+
   clearLocalUserSession();
   try {
     await supabase.auth.signOut();
@@ -100,13 +107,7 @@ export const loginWithCredentials = async (usernameInput: string, passwordInput:
   // 3. Fetch public profile details (role and full_name)
   const { data: profile, error: profileError } = await supabase
     .from('profiles')
-    .select(`
-      full_name,
-      avatar_url,
-      roles (
-        name
-      )
-    `)
+    .select('full_name,avatar_url,roles (name)')
     .eq('id', authData.user.id)
     .single();
 
@@ -114,7 +115,12 @@ export const loginWithCredentials = async (usernameInput: string, passwordInput:
     throw new Error('No se encontró el perfil del usuario.');
   }
 
-  const roleName = (profile.roles as any)?.name || 'User';
+  /*
+    profile.roles is a array of objects like { name: string }
+    I need to get the name of the first object in the array thats why .[0]?.name
+    if not found, default to 'User'
+  */
+  const roleName = (profile.roles as unknown as { name: string }[])?.[0]?.name || 'User';
   const session: UserSession = {
     id: authData.user.id,
     name: profile.full_name || 'Usuario',
