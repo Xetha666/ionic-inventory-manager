@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["deno.window"]
+  },
+  "imports": {
+    "@supabase/supabase-js": "npm:@supabase/supabase-js@2.21.0",
+    "djwt/": "https://deno.land/x/djwt@v2.8/"
+  },
+  "lock": false
+}
