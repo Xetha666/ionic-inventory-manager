@@ -1,4 +1,5 @@
 import { BARCODE_FORMATS } from '@/utils/scannerUtils';
+import type { BarcodeDetector as BarcodeDetectorType } from 'barcode-detector';
 import { useEffect, useRef, useState } from 'react';
 
 export interface UseBarcodeScannerOptions {
@@ -37,10 +38,12 @@ export const useBarcodeScanner = ({
     if (!isCameraReady || isPaused) return;
 
     let active = true;
-    let detector: any = null;
+    let detector: BarcodeDetectorType | null = null;
 
     const initDetectorAndScan = async () => {
-      let DetectorClass = (window as any).BarcodeDetector;
+      let DetectorClass: typeof BarcodeDetectorType | undefined = (
+        window as unknown as { BarcodeDetector: typeof BarcodeDetectorType }
+      ).BarcodeDetector;
       let isNativeWorking = false;
 
       // Chrome on Windows exposes BarcodeDetector, but getSupportedFormats() is empty.
