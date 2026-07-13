@@ -66,15 +66,7 @@ export const useLoginForm = () => {
         return;
       }
 
-      const { data: profile } = await import('@/services/supabaseClient').then(({ supabase }) =>
-        supabase
-          .from('profiles')
-          .select('biometrics_enabled')
-          .eq('id', session.id)
-          .single()
-      );
-
-      const biometricsEnabled = (profile as { biometrics_enabled: boolean })?.biometrics_enabled ?? false;
+      const biometricsEnabled = session.biometricsEnabled ?? false;
 
       if (!biometricsEnabled) {
         // Store pending data and show the enrollment prompt before navigating

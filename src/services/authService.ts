@@ -1,3 +1,4 @@
+import { pushNotificationService } from './pushNotificationService';
 import { supabase } from './supabaseClient';
 
 export interface UserSession {
@@ -6,6 +7,7 @@ export interface UserSession {
   email: string;
   role: 'Administrador' | 'User';
   avatarUrl?: string;
+  biometricsEnabled?: boolean;
 }
 
 export const getLocalUserSession = (): UserSession | null => {
@@ -49,7 +51,6 @@ export const isAuthenticated = (): boolean => {
  */
 export const logoutUser = async () => {
   try {
-    const { pushNotificationService } = await import('./pushNotificationService');
     await pushNotificationService.disassociateToken();
   } catch (pushErr) {
     console.warn('No se pudo desvincular el token FCM al cerrar sesión:', pushErr);
@@ -104,10 +105,10 @@ export const loginWithCredentials = async (usernameInput: string, passwordInput:
     throw new Error('Error al iniciar sesión.');
   }
 
-  // 3. Fetch public profile details (role and full_name)
+  // 3. Fetch public profile details (role, full_name, and biometrics_enabled)
   const { data: profile, error: profileError } = await supabase
     .from('profiles')
-    .select('full_name,avatar_url,roles (name)')
+    .select('full_name,avatar_url,biometrics_enabled,roles (name)')
     .eq('id', authData.user.id)
     .single();
 
@@ -115,18 +116,33 @@ export const loginWithCredentials = async (usernameInput: string, passwordInput:
     throw new Error('No se encontró el perfil del usuario.');
   }
 
-  /*
-    profile.roles is a array of objects like { name: string }
-    I need to get the name of the first object in the array thats why .[0]?.name
-    if not found, default to 'User'
-  */
-  const roleName = (profile.roles as unknown as { name: string }[])?.[0]?.name || 'User';
+  // Interfaz para estructurar y tipar correctamente la respuesta del perfil
+  interface ProfileData {
+    full_name: string | null;
+    avatar_url: string | null;
+    biometrics_enabled: boolean | null;
+    roles: { name: string } | { name: string }[] | null;
+  }
+
+  const dbProfile = profile as ProfileData;
+
+  // Extraer el nombre del rol soportando tanto objetos directos como arrays
+  let roleName = 'User';
+  if (dbProfile.roles) {
+    if (Array.isArray(dbProfile.roles)) {
+      roleName = dbProfile.roles[0]?.name || 'User';
+    } else {
+      roleName = dbProfile.roles.name || 'User';
+    }
+  }
+
   const session: UserSession = {
     id: authData.user.id,
-    name: profile.full_name || 'Usuario',
+    name: dbProfile.full_name || 'Usuario',
     email: resolvedEmail,
     role: roleName as 'Administrador' | 'User',
-    avatarUrl: profile.avatar_url || '/avatar.png',
+    avatarUrl: dbProfile.avatar_url || '/avatar.png',
+    biometricsEnabled: dbProfile.biometrics_enabled ?? false,
   };
 
   // 4. Store session in localStorage (for application state)
